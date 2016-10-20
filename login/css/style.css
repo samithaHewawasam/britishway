@@ -1,0 +1,201 @@
+/*------------------------------------------------
+ * Theme Name       -: ESOFT - Inquiry Managment System
+ * Theme URL        -: N/A
+ * UI Design By     -: Kasun Harshana @skyyalone
+ * Front-end dev by -: Kasun Harshana @skyyalone
+ * Back-End dev by  -: Samitha Hewawasam
+ *
+ * Copyright 2015 (C) ESOFT Metro Campus.
+ *
+ * http://www.esoft.lk
+ *
+ -----------------------------------------------*/
+
+/*=================================================
+=            Resets & Common Variables            =
+=================================================*/
+
+a{
+    outline-color: #585858;
+    text-decoration: none;
+    color:#585858;
+}
+
+li{list-style: none;}
+
+.row {
+    margin: 0;
+}
+
+a:hover, a:focus{
+    outline-color: #00aeef;
+    text-decoration: none;
+    color:#00aeef;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul,li,ol{margin: 0;padding: 0;}
+
+::-webkit-input-placeholder {
+   color: #8290b2;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #8290b2;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #8290b2;
+}
+
+:-ms-input-placeholder {
+   color: #8290b2;
+}
+
+/*-----  End of Resets & Common Variables  ------*/
+
+
+/*===================================
+=            Main Styles            =
+===================================*/
+
+body{
+    font-family:'Open Sans',sans-serif;
+    font-size:13px;
+    font-weight:400;
+    color:#727c7f;
+    background: #364150;
+    overflow: hidden;
+}
+
+/*==========  Login Wrapper  ==========*/
+
+.login-wrap {
+    width:100%;
+    max-width: 460px;
+    margin:0 auto;
+    position:relative;
+    padding:0 15px;
+    z-index: 99;
+    overflow: hidden;
+    margin-top: 60px;
+}
+
+/*-----  End of Main Styles  ------*/
+
+.flip {
+    float: left;
+    height: 305px !important;
+}
+
+/*==========  Login Box  ==========*/
+
+.login-wrap h1 {
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 50px;
+}
+
+.login-wrap h1 .main {
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.login-wrap h1 .secondary {
+    font-weight: 300;
+    color: #ff3f3f;
+}
+
+.login-form {
+    background: #f2f4f6;
+    float: left;
+}
+
+.login-form .login-content {
+    padding: 30px;
+    padding-top: 35px;
+    float: left;
+    width: 100%;
+    background: #f2f4f6;
+}
+
+.login-content > label {
+    font-weight: 400;
+    float: left;
+    width: 100%;
+    margin-bottom: 25px;
+    outline: none;
+}
+
+.login-content label input[type="text"],
+.login-content label input[type="password"] {
+    background: #e6ebf2;
+    border: 1px solid #dfe5ef;
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+    color: #364150;
+    outline: none;
+    -webkit-transition: background 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: background 0.3s;
+}
+
+.login-content label input[type="text"]:focus,
+.login-content label input[type="password"]:focus {
+    background: #FDFDFD;
+}
+
+.login-content .actions {
+    float: left;
+    width: 100%;
+}
+
+.login-content .actions input[type="submit"] {
+    border: 0;
+    background: #45b6af;
+    color: #fff;
+    padding: 10px 15px;
+    min-width: 100px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.login-content .actions label {
+    margin: 0;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.forgot-pass,
+.back-to-login {
+    float: right;
+    margin-top: 9px;
+    color: #7a94b6;
+}
+
+.login-form .content-footer {
+    background: #6c7a8d;
+    text-align: center;
+    color: #36455a;
+    padding: 15px;
+    float: left;
+    width: 100%;
+}
+
+.login-form .content-footer p {}
+
+.login-form .content-footer p a {
+    color: #91a4bd;
+}
+
+p.copyrights {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    color: #6c7a8d;
+}
+
+/*-----  End of Login Box  ------*/

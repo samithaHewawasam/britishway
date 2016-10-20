@@ -1,0 +1,16 @@
+
+.inner_area {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+		padding: 10px;
+		width: 50% !important;
+}
+
+.report {
+
+    background: white;
+    margin: 10px;
+    width: 90%;
+
+}
