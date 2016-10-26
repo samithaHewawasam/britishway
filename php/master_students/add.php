@@ -3,7 +3,7 @@ include __DIR__ . '/../autoload.php';
 $raw_data = json_decode(file_get_contents("php://input"));
 
 $master_students = new master_students();
-$master_students->add(
+echo json_encode($master_students->add(
               $raw_data->student_id,
               $raw_data->name_full,
               $raw_data->name_initials,
@@ -21,6 +21,6 @@ $master_students->add(
               $raw_data->guardian_name,
               $raw_data->guardian_contact_no,
               $raw_data->find_by
-            );
+            ));
 
  ?>

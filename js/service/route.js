@@ -14,6 +14,16 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+        .when('/registrations_add', {
+            title: 'Registrations',
+            templateUrl: 'views/master_registrations/add.html',
+            controller: 'masterStudentsController',
+            resolve: {
+                getData: function(getDataService) {
+                    return getDataService.get();
+                }
+            }
+        })
         // If 404
         .otherwise({
             redirectTo: '/'

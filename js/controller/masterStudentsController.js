@@ -9,7 +9,7 @@ $scope.save = function(data){
 
     if(response.commit == 1){
       alert("Added");
-      //window.location.reload();
+      window.location = "#registrations_add";
 
     }else{
       alert("Error found");
