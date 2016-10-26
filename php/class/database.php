@@ -1,6 +1,6 @@
 <?php
 
-class database extends PDO
+abstract class database extends PDO
 {
 
 
@@ -114,7 +114,16 @@ class database extends PDO
 
     }
 
+    public function log($user_id, $function){
 
+      return $this->wrapper(array(
+      array(
+          'query' => "INSERT INTO `master_log`(`operator`, `function`, `date`) VALUES (?, ?, ?)",
+          'data'  => array($user_id, $function, Date('Y-m-d'))
+      )
+     ));
+
+    }
 
 }
 

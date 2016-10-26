@@ -25,7 +25,7 @@ class user extends database
 
      if(!empty($this->login)){
 
-      $this->log($this->login['data'][0]->id, 'login');
+      parent::log($this->login['data'][0]->id, 'login');
 
       $this->menu_fetch = parent::selectQuery(array(
            'query' => "SELECT mm.menu_name main_menu, mms.menu_name sub_menu, mm.menu_path main_menu_path, mms.menu_path sub_menu_path
@@ -43,17 +43,6 @@ class user extends database
        return $this->menus;
 
      }
-
-   }
-
-   public function log($user_id, $function){
-
-     return parent::wrapper(array(
-     array(
-         'query' => "INSERT INTO `master_log`(`operator`, `function`, `date`) VALUES (?, ?, ?)",
-         'data'  => array($user_id, $function, Date('Y-m-d'))
-     )
-    ));
 
    }
 
