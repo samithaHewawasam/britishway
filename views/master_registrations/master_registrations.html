@@ -1,0 +1,74 @@
+<div class="main-background">
+  <div class="container">
+    <div class="row">
+      <form name=master_registrations_form novalidate>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.id.$invalid &&!master_registrations_form.id.$pristine}">
+          <label>id</label>
+          <input type="text" class="form-control" name="id" ng-model="master_registrations.id" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.reg_no.$invalid &&!master_registrations_form.reg_no.$pristine}">
+          <label>reg_no</label>
+          <input type="text" class="form-control" name="reg_no" ng-model="master_registrations.reg_no" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.branch_id.$invalid &&!master_registrations_form.branch_id.$pristine}">
+          <label>branch_id</label>
+          <input type="text" class="form-control" name="branch_id" ng-model="master_registrations.branch_id" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.course_id.$invalid &&!master_registrations_form.course_id.$pristine}">
+          <label>course_id</label>
+          <input type="text" class="form-control" name="course_id" ng-model="master_registrations.course_id" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.reg_date.$invalid &&!master_registrations_form.reg_date.$pristine}">
+          <label>reg_date</label>
+          <input type="text" class="form-control" name="reg_date" ng-model="master_registrations.reg_date" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.student_id.$invalid &&!master_registrations_form.student_id.$pristine}">
+          <label>student_id</label>
+          <input type="text" class="form-control" name="student_id" ng-model="master_registrations.student_id" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.batch_id.$invalid &&!master_registrations_form.batch_id.$pristine}">
+          <label>batch_id</label>
+          <input type="text" class="form-control" name="batch_id" ng-model="master_registrations.batch_id" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.fee_id.$invalid &&!master_registrations_form.fee_id.$pristine}">
+          <label>fee_id</label>
+          <input type="text" class="form-control" name="fee_id" ng-model="master_registrations.fee_id" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.fee.$invalid &&!master_registrations_form.fee.$pristine}">
+          <label>fee</label>
+          <input type="text" class="form-control" name="fee" ng-model="master_registrations.fee" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.total_paid.$invalid &&!master_registrations_form.total_paid.$pristine}">
+          <label>total_paid</label>
+          <input type="text" class="form-control" name="total_paid" ng-model="master_registrations.total_paid" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.reg_fee.$invalid &&!master_registrations_form.reg_fee.$pristine}">
+          <label>reg_fee</label>
+          <input type="text" class="form-control" name="reg_fee" ng-model="master_registrations.reg_fee" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.discount.$invalid &&!master_registrations_form.discount.$pristine}">
+          <label>discount</label>
+          <input type="text" class="form-control" name="discount" ng-model="master_registrations.discount" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.discount_comment.$invalid &&!master_registrations_form.discount_comment.$pristine}">
+          <label>discount_comment</label>
+          <input type="text" class="form-control" name="discount_comment" ng-model="master_registrations.discount_comment" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.comment.$invalid &&!master_registrations_form.comment.$pristine}">
+          <label>comment</label>
+          <input type="text" class="form-control" name="comment" ng-model="master_registrations.comment" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.operator_id.$invalid &&!master_registrations_form.operator_id.$pristine}">
+          <label>operator_id</label>
+          <input type="text" class="form-control" name="operator_id" ng-model="master_registrations.operator_id" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.status.$invalid &&!master_registrations_form.status.$pristine}">
+          <label>status</label>
+          <input type="text" class="form-control" name="status" ng-model="master_registrations.status" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_registrations_form.$invalid" class="btn create-btn" ng-click="savemaster_registrations(master_registrations)">Create</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
