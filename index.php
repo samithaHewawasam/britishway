@@ -138,14 +138,7 @@
 <script src="js/service/ajax.js"></script>
 <script src="js/service/authoService.js"></script>
 <script src="js/service/dataService.js"></script>
-<script src="js/service/loginService.js"></script>
-<script src="js/controller/indexController.js"></script>
-<script src="js/controller/loginController.js"></script>
-<script src="js/controller/accsessController.js"></script>
-<script src="js/controller/adminController.js"></script>
-<script src="js/controller/reportController.js"></script>
-<script src="js/controller/addController.js"></script>
-<script src="js/controller/moreInfoController.js"></script>
+<script src="js/controller/masterStudentsController.js"></script>
 <script src="js/vendor/FileSaver.js"></script>
 
 </body>
