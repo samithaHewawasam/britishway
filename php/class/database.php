@@ -4,17 +4,48 @@ abstract class database extends PDO
 {
 
 
+    private $sql;
+    private $sqlSync;
     private $response = array('commit' => false, 'error' => null, 'rollback' => false);
     private $result = array('data' => array(), 'error' => NULL);
 
     public function __construct()
     {
 
-        parent::__construct('mysql:host=localhost;dbname=exam', 'root', '891600909v', array(
+        include "config.php";
+        parent::__construct('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD, array(
             PDO::ATTR_PERSISTENT => true
         ));
 
     }
+
+    public function wrapper(array $arguments)
+   {
+       try {
+           parent::beginTransaction();
+           foreach ($arguments as $key => $val) {
+               $this->sql = parent::prepare(trim($val['query']));
+               $this->sqlSync = parent::prepare("INSERT INTO `sync_log`( `query`, `data`) VALUES (?,?)");
+               $this->sqlSync->execute(array(
+                   $val['query'],
+                   serialize($val['bind'])
+               ));
+
+               foreach ($val['bind'] as $key => &$val) {
+                   $this->sql->bindValue($key + 1, $val);
+               }
+
+               $this->sql->execute();
+           }
+           $this->response['commit'] = parent::commit();
+       }
+       catch (PDOException $e) {
+          $this->result['error'] = $e->getMessage();
+          $this->response['rollback'] = parent::rollBack();
+       }
+
+       return $this->response;
+   }
 
     public function selectQuery(array $param)
     {
