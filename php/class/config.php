@@ -1,7 +1,7 @@
 <?php
 
-defined('DATABASE', 'britishway_nit');
-defined('USERNAME', 'root');
-defined('PASSWORD', '');
+define('DATABASE', 'britishway_nit');
+define('USERNAME', 'root');
+define('PASSWORD', '');
 
  ?>

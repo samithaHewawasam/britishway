@@ -1,6 +1,6 @@
 <?php
 
-abstract class database extends PDO
+class database extends PDO
 {
 
 
@@ -52,7 +52,7 @@ abstract class database extends PDO
 
         try {
 
-            $this->sql = parent::prepare(trim($param['query']));
+            $this->sql = parent::prepare($param['query']);
             $this->sql->execute($param['data']);
             $this->result['data'] = $this->sql->fetchALL(PDO::FETCH_OBJ);
 

@@ -1,25 +1,23 @@
-<?php
-session_start();
+<?php session_start();
 include __DIR__ . '/autoload.php';
 
-
-
 $user = new user();
-$user->setUserName($_POST['user_name']);
-$user->setPassword(md5($_POST['password']));
-$login = $user->login();
+$login = $user->login(trim($_POST['user_name']), md5(trim($_POST['password'])));
 
-if($login['data'][0]->success == 1){
 
-	$menu = new menu();
+if(!empty($login)){
+
 	$_SESSION['logged'] = true;
-	$_SESSION['menus'] = $menu->getMenus($login['data'][0]->type);
+	$_SESSION['user']		= $login;
+  $_SESSION['menus']	= $user->menu();
+
 	header("Location: ../");
 
-}else if($login['data'][0]->success == 0){
+}else{
 
-	echo json_encode($login['error']);
-	header("Location: ../login");
+ $_SESSION['logged'] = false;
+ $_SESSION['user']	 = array();
+ header("Location: ../login");
 
 }
 

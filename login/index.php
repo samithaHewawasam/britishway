@@ -15,7 +15,7 @@ unset($_SESSION['Sys_U_Name']);
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>British Way - The largest English language training institution in Sri Lanka</title>
+    <title>British Way - English Language Institute </title>
     <meta name="description" content="EXAM Management Application">
     <meta name="keywords" content="">
 
@@ -58,7 +58,7 @@ unset($_SESSION['Sys_U_Name']);
     <section class="login-wrap">
 
       <!-- Heading -->
-      <h1><i class="secondary">The largest English language training institution</i> <br><br><i class="main">British Way</i>  </h1><!-- // Heading -->
+      <h1><i class="secondary">English Language Institute</i> <br><br><i class="main">British Way</i>  </h1><!-- // Heading -->
 
       <!-- Flip Card -->
 

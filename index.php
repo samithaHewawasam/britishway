@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 	if ($_SESSION['logged'] !== true) {
 		 header("Location: login");
 		 exit();
@@ -58,32 +57,21 @@ session_start();
         <li class="header">MAIN NAVIGATION</li>
 				<?php foreach($_SESSION['menus'] as $key => $menu): ?>
 
-				<?php if(!is_array($menu)) :?>
 				<li class="treeview">
-          <a href="#/<?php echo $key; ?>">
+          <a href="#/<?php echo $menu['path']; ?>">
             <i class="fa fa-pie-chart"></i>
-            <span> <?php echo $menu; ?> </span>
+            <span> <?php echo $key; ?> </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
         </li>
-			<?php endif; ?>
 
 			<?php if(is_array($menu)) :?>
 			<li class="treeview active">
-				<a href="javascript:void(0)">
-					<i class="fa fa-pie-chart"></i>
-					<span> <?php echo $menu['menu']; ?> </span>
-					<span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-				</a>
-
-
 				<ul class="treeview-menu menu-open">
 					<?php foreach($menu as $k => $sub): ?>
-						<?php if($k != 'menu') :?>
+						<?php if($k != 'path') :?>
 					<li><a href="#/<?php echo $k;?>"><i class="fa fa-circle-o"></i> <?php echo $sub;?> </a></li>
 					<?php endif; ?>
 				<?php endforeach; ?>
