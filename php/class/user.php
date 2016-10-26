@@ -10,7 +10,7 @@ class user extends database
    {
 
        $this->login = parent::selectQuery(array(
-           'query' => "SELECT * FROM `master_users` WHERE `user_name` = ? AND `user_pass` = ?",
+           'query' => "SELECT `id`,`user_display_name`,`user_role` FROM `master_users` WHERE `user_name` = ? AND `user_pass` = ? AND user_status IS TRUE",
            'data' => array(
                $user_name,
                $password
@@ -24,6 +24,8 @@ class user extends database
    public function menu(){
 
      if(!empty($this->login)){
+
+      $this->log($this->login['data'][0]->id, 'login');
 
       $this->menu_fetch = parent::selectQuery(array(
            'query' => "SELECT mm.menu_name main_menu, mms.menu_name sub_menu, mm.menu_path main_menu_path, mms.menu_path sub_menu_path
@@ -41,6 +43,17 @@ class user extends database
        return $this->menus;
 
      }
+
+   }
+
+   public function log($user_id, $function){
+
+     return parent::wrapper(array(
+     array(
+         'query' => "INSERT INTO `master_log`(`operator`, `function`, `date`) VALUES (?, ?, ?)",
+         'data'  => array($user_id, $function, Date('Y-m-d'))
+     )
+    ));
 
    }
 

@@ -28,10 +28,10 @@ class database extends PDO
                $this->sqlSync = parent::prepare("INSERT INTO `sync_log`( `query`, `data`) VALUES (?,?)");
                $this->sqlSync->execute(array(
                    $val['query'],
-                   serialize($val['bind'])
+                   serialize($val['data'])
                ));
 
-               foreach ($val['bind'] as $key => &$val) {
+               foreach ($val['data'] as $key => &$val) {
                    $this->sql->bindValue($key + 1, $val);
                }
 
