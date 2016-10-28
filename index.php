@@ -139,6 +139,7 @@
 <script src="js/service/authoService.js"></script>
 <script src="js/service/dataService.js"></script>
 <script src="js/controller/masterStudentsController.js"></script>
+<script src="js/controller/masterRegistrationsController.js"></script>
 <script src="js/vendor/FileSaver.js"></script>
 
 </body>

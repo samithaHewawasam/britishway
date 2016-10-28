@@ -16,12 +16,12 @@ app.service('dataService', function() {
 });
 
 
-app.service('getDataService', ['Ajax', 'authoService', function(Ajax, authoService) {
+app.service('RegistrationService', ['Ajax', 'authoService', function(Ajax, authoService) {
 
   this.get = function() {
 
     return Ajax.get({
-      "url": "php/filters.php",
+      "url": "php/master_registrations/registrations.php",
       "data": authoService.isLogged()
     });
 

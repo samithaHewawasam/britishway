@@ -17,10 +17,10 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/registrations_add', {
             title: 'Registrations',
             templateUrl: 'views/master_registrations/add.html',
-            controller: 'masterStudentsController',
+            controller: 'masterRegistrationsController',
             resolve: {
-                getData: function(getDataService) {
-                    return getDataService.get();
+                getData: function(RegistrationService) {
+                    return RegistrationService.get();
                 }
             }
         })
