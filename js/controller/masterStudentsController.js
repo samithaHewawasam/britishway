@@ -1,4 +1,4 @@
-app.controller('masterStudentsController', ['$scope', 'dataService', '$filter', 'Ajax', 'getData', function($scope, dataService, $filter, Ajax, getData) {
+app.controller('masterStudentsController', ['$scope', '$filter', 'Ajax', function($scope, $filter, Ajax) {
 
 $scope.save = function(data){
 
