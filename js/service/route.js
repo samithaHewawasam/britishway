@@ -14,8 +14,8 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: 'views/master_registrations/add.html',
             controller: 'masterRegistrationsController',
             resolve: {
-                getData: function(RegistrationService) {
-                    return RegistrationService.get();
+                getData: function($location, RegistrationService) {
+                    return RegistrationService.get($location.search().id);
                 }
             }
         })

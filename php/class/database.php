@@ -23,24 +23,29 @@ abstract class database extends PDO
    {
        try {
            parent::beginTransaction();
-           foreach ($arguments as $key => $val) {
-               $this->sql = parent::prepare(trim($val['query']));
-               $this->sqlSync = parent::prepare("INSERT INTO `sync_log`( `query`, `data`) VALUES (?,?)");
-               $this->sqlSync->execute(array(
-                   $val['query'],
-                   serialize($val['data'])
-               ));
+           foreach ($arguments as $key => &$value) {
 
-               foreach ($val['data'] as $key => &$val) {
+               $this->sql = parent::prepare(trim($value['query']));
+               foreach ($value['data'] as $key => &$val) {
                    $this->sql->bindValue($key + 1, $val);
                }
 
                $this->sql->execute();
+               $value['last_insert_id'] = parent::lastInsertId();
+
+               $this->sqlSync = parent::prepare("INSERT INTO `sync_log`( `query`, `data`) VALUES (?,?)");
+               $this->sqlSync->execute(array(
+                   $value['query'],
+                   serialize($value['data'])
+               ));
+
            }
+
            $this->response['commit'] = parent::commit();
+           $this->response['last_insert_id'] = $arguments[0]['last_insert_id'];
        }
        catch (PDOException $e) {
-          $this->result['error'] = $e->getMessage();
+          $this->response['error'] = $e->getMessage();
           $this->response['rollback'] = parent::rollBack();
        }
 

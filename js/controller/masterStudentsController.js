@@ -8,9 +8,7 @@ $scope.save = function(data){
   }).then(function(response){
 
     if(response.commit == 1){
-      alert("Added");
-      window.location = "#registrations_add";
-
+      window.location = "#registrations_add?id="+response.last_insert_id;
     }else{
       alert("Error found");
     }
