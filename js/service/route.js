@@ -19,6 +19,16 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+        .when('/batch_add', {
+            title: 'Batches',
+            templateUrl: 'views/master_batches/add.html',
+            controller: 'masterBatchesController',
+            resolve: {
+                getData: function(BatchService) {
+                    return BatchService.get();
+                }
+            }
+        })
         // If 404
         .otherwise({
             redirectTo: '/'

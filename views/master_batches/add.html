@@ -1,22 +1,23 @@
 <div class="main-background">
   <div class="container">
     <div class="row">
+      <div class="col-xs-6">
       <form name=master_batches_form novalidate>
         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_course_id.$invalid &&!master_batches_form.batch_course_id.$pristine}">
           <label>Course</label>
-          <input type="text" class="form-control" name="batch_course_id" ng-model="master_batches.batch_course_id" ng-required="true">
+          <select ng-options="course.id as course.course_name for course in courses" name="batch_course_id" class="form-control" ng-change="courseSelect(master_batches.batch_course_id)" ng-required="true" ng-model="master_batches.batch_course_id"></select>
         </div>
         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_code.$invalid &&!master_batches_form.batch_code.$pristine}">
           <label>Batch Code</label>
-          <input type="text" class="form-control" name="batch_code" ng-model="master_batches.batch_code" ng-required="true">
+          <input type="text" class="form-control" name="batch_code" ng-model="master_batches.batch_code" ng-required="true" readonly="readonly">
         </div>
         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_commence.$invalid &&!master_batches_form.batch_commence.$pristine}">
           <label>Batch Commence Date</label>
-          <input type="text" class="form-control" name="batch_commence" ng-model="master_batches.batch_commence" ng-required="true">
+          <input type="text" class="form-control" name="batch_commence" ng-model="master_batches.batch_commence" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker ng-required="true">
         </div>
         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_end.$invalid &&!master_batches_form.batch_end.$pristine}">
           <label>Batch End Date</label>
-          <input type="text" class="form-control" name="batch_end" ng-model="master_batches.batch_end" ng-required="true">
+          <input type="text" class="form-control" name="batch_end" ng-model="master_batches.batch_end" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker ng-required="true">
         </div>
         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_intake.$invalid &&!master_batches_form.batch_intake.$pristine}">
           <label>Batch Intake</label>
@@ -24,7 +25,19 @@
         </div>
         <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_batches_form.$invalid" class="btn create-btn" ng-click="savemaster_batches(master_batches)">Create</a></div>
       </form>
+      </div>
+      <div class="col-xs-6">
+        <table class="table table-striped table-bordered">
+          <tr><th>#</th><th>Batch Code</th><th>Batch Commence Date</th><th>Batch Commence Date</th><th>Batch Intake</th></tr>
+          <tr ng-repeat="batch in batches">
+            <td>{{$index + 1}}</td>
+            <td>{{batch.batch_code}}</td>
+            <td>{{batch.batch_commence}}</td>
+            <td>{{batch.batch_end}}</td>
+            <td>{{batch.batch_intake}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 </div>

@@ -23,8 +23,6 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
 
 	<link rel="stylesheet" href="css/style.css">
 
@@ -140,6 +138,7 @@
 <script src="js/service/dataService.js"></script>
 <script src="js/controller/masterStudentsController.js"></script>
 <script src="js/controller/masterRegistrationsController.js"></script>
+<script src="js/controller/masterBatchesController.js"></script>
 <script src="js/vendor/FileSaver.js"></script>
 
 </body>

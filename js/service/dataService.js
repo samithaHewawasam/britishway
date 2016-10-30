@@ -29,6 +29,20 @@ app.service('RegistrationService', ['Ajax', 'authoService', function(Ajax, autho
 
 }]);
 
+app.service('BatchService', ['Ajax', 'authoService', function(Ajax, authoService) {
+
+  this.get = function() {
+
+    return Ajax.get({
+      "url": "php/master_batches/courses.php",
+      "data": null
+    });
+
+  };
+
+}]);
+
+
 app.service('getReportService', ['Ajax', 'authoService', function(Ajax, authoService) {
 
   this.get = function(report) {

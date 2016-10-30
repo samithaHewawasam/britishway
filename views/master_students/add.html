@@ -17,7 +17,7 @@
          </div>
          <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.dob.$invalid &&!master_students_form.dob.$pristine}">
            <label>DOB</label>
-           <input type="text" class="form-control" name="dob" ng-model="master_students.dob" ng-required="true">
+           <input type="text" class="form-control" name="dob" ng-model="master_students.dob" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker ng-required="true">
          </div>
          <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.marital_status.$invalid &&!master_students_form.marital_status.$pristine}">
            <label>Marital Status</label>
