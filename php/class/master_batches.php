@@ -46,12 +46,36 @@ class master_batches extends database
 
     }
 
+    public function findBatchesByBatchId($id){
+
+      $this->batches_index['edit_batch'] = parent::selectQuery(array(
+          "query" => "SELECT mb.`batch_course_id`, mb.`batch_code`, mb.`batch_commence`, mb.`batch_end` , mb.`batch_intake`, mc.`course_name`
+          FROM `master_batches` mb INNER JOIN master_courses mc ON mc.`id` = mb.`batch_course_id` WHERE mb.`id` =?",
+          "data" => array(
+              $id
+          )
+      ));
+
+      return $this->batches_index;
+
+    }
+
     public function delete($id){
 
       return parent::wrapper(array(
         array(
           'query' => "DELETE FROM `master_batches` WHERE `id` = ?",
           'data' => array($id)
+      )));
+
+    }
+
+    public function edit($id, $batch_course_id = NULL, $batch_code = NULL, $batch_commence = NULL, $batch_end = NULL, $batch_intake = NULL){
+
+      return parent::wrapper(array(
+        array(
+          'query' => "UPDATE `master_batches` SET `batch_commence`= ?, `batch_end`= ?,`batch_intake` = ? WHERE `id` = ?",
+          'data' => array($batch_commence, $batch_end, $batch_intake, $id)
       )));
 
     }

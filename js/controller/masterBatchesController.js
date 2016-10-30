@@ -12,6 +12,15 @@ app.controller('masterBatchesController', ['$scope', 'dataService', '$location',
 
   $scope.master_batches = new masterBatches();
 
+  if(getData.hasOwnProperty('edit_batch')){
+    $scope.master_batches.id = getData.edit_batch_id;
+    $scope.master_batches.batch_course_id = getData.edit_batch.data[0].batch_course_id;
+    $scope.master_batches.batch_code =  getData.edit_batch.data[0].batch_code;
+    $scope.master_batches.batch_commence =  getData.edit_batch.data[0].batch_commence;
+    $scope.master_batches.batch_end =  getData.edit_batch.data[0].batch_end;
+    $scope.master_batches.batch_intake =  getData.edit_batch.data[0].batch_intake;
+  }
+
 
   $scope.courseSelect = function(course_id){
 
@@ -43,6 +52,19 @@ app.controller('masterBatchesController', ['$scope', 'dataService', '$location',
         "batch_intake" : $scope.master_batches.batch_intake,
         "id" : response.last_insert_id,
       });
+
+      $scope.master_batches = new masterBatches();
+
+    });
+
+  }
+
+  $scope.editmaster_batches = function(data){
+
+    Ajax.post({
+      "url"   : "php/master_batches/editSave.php",
+      "data"  : data
+    }).then(function(response){
 
       $scope.master_batches = new masterBatches();
 

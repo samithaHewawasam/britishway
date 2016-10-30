@@ -42,27 +42,13 @@ app.service('BatchService', ['Ajax', 'authoService', function(Ajax, authoService
 
 }]);
 
-
-app.service('getReportService', ['Ajax', 'authoService', function(Ajax, authoService) {
-
-  this.get = function(report) {
-
-    return Ajax.get({
-      "url": "php/"+report+".php",
-      "data": authoService.isLogged()
-    });
-
-  };
-
-}]);
-
-app.service('getSatDataService', ['Ajax', 'authoService', function(Ajax, authoService) {
+app.service('BatchEditService', ['Ajax', 'authoService', function(Ajax, authoService) {
 
   this.get = function(id) {
 
     return Ajax.get({
-      "url": "php/sat_data.php",
-      "data": { 'id' : id }
+      "url": "php/master_batches/edit.php",
+      "data": {'id' : id}
     });
 
   };

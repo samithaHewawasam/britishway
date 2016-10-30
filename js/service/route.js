@@ -29,6 +29,24 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+        .when('/batch_edit', {
+            title: 'Batch Edit',
+            templateUrl: 'views/master_batches/edit.html',
+            controller: 'masterBatchesController',
+            resolve: {
+                getData: function($location, BatchEditService, BatchService, $q) {
+
+                  return $q.all([BatchEditService.get($location.search().id), BatchService.get()]).then(function(results){
+
+                    return {
+                       'edit_batch' : results[0].edit_batch,
+                       'courses' : results[1].courses,
+                       'edit_batch_id' : $location.search().id
+                    };
+                });
+            }
+          }
+        })
         // If 404
         .otherwise({
             redirectTo: '/'

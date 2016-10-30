@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-xs-6">
       <form name=master_batches_form novalidate>
-        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_course_id.$invalid &&!master_batches_form.batch_course_id.$pristine}">
+        <!--<div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_course_id.$invalid &&!master_batches_form.batch_course_id.$pristine}">
           <label>Course</label>
-          <select ng-options="course.id as course.course_name for course in courses" name="batch_course_id" class="form-control" ng-change="courseSelect(master_batches.batch_course_id)" ng-required="true" ng-model="master_batches.batch_course_id"></select>
-        </div>
+          <select ng-options="course.id as course.course_name for course in courses" name="batch_course_id" class="form-control" ng-change="courseSelect(master_batches.batch_course_id)" ng-required="true" ng-model="master_batches.batch_course_id" disabled=""></select>
+        </div>-->
         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_batches_form.batch_code.$invalid &&!master_batches_form.batch_code.$pristine}">
           <label>Batch Code</label>
           <input type="text" class="form-control" name="batch_code" ng-model="master_batches.batch_code" ng-required="true" readonly="readonly">
@@ -23,25 +23,9 @@
           <label>Batch Intake</label>
           <input type="text" class="form-control" name="batch_intake" ng-model="master_batches.batch_intake" ng-required="true">
         </div>
-        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_batches_form.$invalid" class="btn create-btn" ng-click="savemaster_batches(master_batches)">Create</a></div>
+        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_batches_form.$invalid" class="btn create-btn" ng-click="editmaster_batches(master_batches)">Save</a></div>
       </form>
       </div>
-      <div class="col-xs-6">
-        <div class="table-responsive">
-        <table class="table table-striped table-bordered table-fixed">
-          <tr><th>#</th><th>Batch Code</th><th>Batch Commence Date</th><th>Batch Commence Date</th><th>Batch Intake</th><th>Delete</th><th>Edit</th></tr>
-          <tr ng-repeat="batch in batches">
-            <td>{{$index + 1}}</td>
-            <td>{{batch.batch_code}}</td>
-            <td>{{batch.batch_commence}}</td>
-            <td>{{batch.batch_end}}</td>
-            <td>{{batch.batch_intake}}</td>
-            <td><button type="button" class="btn btn-danger btn-xs" ng-click="delete(batch.id, $index)">Delete</button></td>
-            <td><a class="btn btn-primary btn-xs" href="#/batch_edit?id={{batch.id}}">Edit</a></td>
-          </tr>
-        </table>
-      </div>
-    </div>
     </div>
   </div>
 </div>
