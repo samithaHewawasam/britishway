@@ -25,7 +25,7 @@ class master_batches extends database
     public function findBatchesByCourseId($id){
 
       $this->batches_index['batches'] = parent::selectQuery(array(
-          "query" => "SELECT * FROM `master_batches` WHERE `batch_course_id` = ? AND `batch_status` IS TRUE",
+          "query" => "SELECT * FROM `master_batches` mb WHERE mb.`batch_course_id` = ? AND mb.`batch_status` IS TRUE ORDER BY mb.`id` DESC",
           "data" => array(
               $id
           )
@@ -43,6 +43,16 @@ class master_batches extends database
 
 
       return $this->batches_index;
+
+    }
+
+    public function delete($id){
+
+      return parent::wrapper(array(
+        array(
+          'query' => "DELETE FROM `master_batches` WHERE `id` = ?",
+          'data' => array($id)
+      )));
 
     }
 

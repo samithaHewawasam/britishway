@@ -2,6 +2,16 @@ app.controller('masterBatchesController', ['$scope', 'dataService', '$location',
 
   $scope.courses = getData.courses.data;
 
+  function masterBatches(){
+    this.batch_course_id = "";
+    this.batch_code = "";
+    this.batch_commence = "";
+    this.batch_end = "";
+    this.batch_intake = "";
+  }
+
+  $scope.master_batches = new masterBatches();
+
 
   $scope.courseSelect = function(course_id){
 
@@ -10,6 +20,8 @@ app.controller('masterBatchesController', ['$scope', 'dataService', '$location',
       "data"  : { 'course_id' : course_id }
     }).then(function(response){
 
+      $scope.master_batches = new masterBatches();
+      $scope.master_batches.batch_course_id = course_id;
       $scope.batches = response.batches.data;
       $scope.master_batches.batch_code = response.new_batch.data[0].batch_code;
 
@@ -23,6 +35,38 @@ app.controller('masterBatchesController', ['$scope', 'dataService', '$location',
       "url"   : "php/master_batches/add.php",
       "data"  : data
     }).then(function(response){
+
+      $scope.batches.unshift({
+        "batch_code" : $scope.master_batches.batch_code,
+        "batch_commence" : $scope.master_batches.batch_commence,
+        "batch_end" : $scope.master_batches.batch_end,
+        "batch_intake" : $scope.master_batches.batch_intake,
+        "id" : response.last_insert_id,
+      });
+
+      $scope.master_batches = new masterBatches();
+
+    });
+
+  }
+
+  $scope.delete = function(id, index){
+
+    var c = confirm("Are you sure?");
+    if(!c){
+      return;
+    }
+
+    Ajax.get({
+      "url"   : "php/master_batches/delete.php",
+      "data"  : { 'id' : id }
+    }).then(function(response){
+
+      if(response.commit  == 1){
+        $scope.batches.splice(index, 1)
+      }else{
+        alert("Error");
+      }
 
     });
 
