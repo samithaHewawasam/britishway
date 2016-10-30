@@ -79,14 +79,14 @@ class master_registrations extends database
       }else if($fullOrIns == 0){
 
         $registrations_index['fee_structure'] = parent::selectQuery(array(
-            "query" => "SELECT `course_fee_ins` gross,`registration_fee`,`exam_fee` FROM `master_fee_structures` mfs WHERE mfs.`id` = ?  AND mfs.status IS TRUE",
+            "query" => "SELECT IFNULL(`course_fee_ins`, `course_fee_full`) gross,`registration_fee`,`exam_fee` FROM `master_fee_structures` mfs WHERE mfs.`id` = ?  AND mfs.status IS TRUE",
             "data" => array(
                 $id
             )
         ));
 
         $registrations_index['fee_installments'] = parent::selectQuery(array(
-            "query" => "SELECT * FROM `master_fee_installments` mfi WHERE mfi.`master_fee_id` = ?",
+            "query" => "SELECT *,IF(mfi.ins_id = 1, CURDATE(), IF( mfs.ins_days = 20, ADDDATE(CURDATE(), INTERVAL 20 DAY), ADDDATE(CURDATE(), INTERVAL mfi.ins_id -1 MONTH)) ) due_date FROM `master_fee_installments` mfi  INNER JOIN `master_fee_structures` mfs ON mfs.`id` = mfi.`master_fee_id` WHERE mfi.`master_fee_id` = ?",
             "data" => array(
                 $id
             )

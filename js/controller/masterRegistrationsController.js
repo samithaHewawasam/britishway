@@ -1,4 +1,4 @@
-app.controller('masterRegistrationsController', ['$scope', 'dataService', '$filter', 'Ajax', 'getData', function($scope, dataService, $filter, Ajax, getData) {
+app.controller('masterRegistrationsController', ['$scope', 'dataService', '$location', 'Ajax', 'getData', function($scope, dataService, $location, Ajax, getData) {
 
 $scope.courses = getData.courses.data;
 
@@ -9,13 +9,15 @@ function MasterRegistrations(){
 }
 $scope.master_registrations = new MasterRegistrations();
 
-
 $scope.getLastRegNo = function(course_id){
 
   Ajax.post({
     "url"   : "php/master_registrations/getLastRegNoAndBatches.php",
     "data"  : { 'course_id' : course_id }
   }).then(function(response){
+
+    $scope.master_registrations = new MasterRegistrations();
+    $scope.master_registrations.course_id = course_id;
 
       if(response.registrations.data.length == 1){
         $scope.master_registrations.reg_no = response.registrations.data[0].reg_no;
@@ -46,9 +48,11 @@ $scope.findByFeeStructureId = function(id){
     "data"  : { 'fee_id' : id, 'fullOrIns' : $scope.master_registrations.full_or_ins }
   }).then(function(response){
 
-    $scope.master_registrations.fee = response.fee_structure.data[0].gross;
-    $scope.master_registrations.reg_fee = response.fee_structure.data[0].registration_fee;
-    if($scope.master_registrations.fullOrIns == 0){
+    if(response.hasOwnProperty('fee_structure')){
+        $scope.master_registrations.fee = response.fee_structure.data[0].gross;
+        $scope.master_registrations.reg_fee = response.fee_structure.data[0].registration_fee;
+    }
+    if($scope.master_registrations.fullOrIns == 0 && response.hasOwnProperty('fee_installments')){
       $scope.fee_installments = response.fee_installments.data;
     }
 
@@ -70,14 +74,47 @@ if(!$scope.master_registrations.fee_id){
     "data"  : { 'fee_id' : $scope.master_registrations.fee_id, 'fullOrIns' : fullOrIns }
   }).then(function(response){
 
-    $scope.master_registrations.fee = response.fee_structure.data[0].gross;
-    $scope.master_registrations.reg_fee = response.fee_structure.data[0].registration_fee;
-    if(fullOrIns == 0){
+    if(response.hasOwnProperty('fee_structure')){
+      $scope.master_registrations.fee = response.fee_structure.data[0].gross;
+      $scope.master_registrations.reg_fee = response.fee_structure.data[0].registration_fee;
+    }
+
+    if(fullOrIns == 0 && response.hasOwnProperty('fee_installments')){
       $scope.fee_installments = response.fee_installments.data;
+      $scope.fee_installments_array = response.fee_installments.data;
     }
 
   });
 
 };
+
+
+$scope.$watch('master_registrations.discount', function(newValue, oldValue){
+
+  if(typeof newValue == "undefined"){
+    newValue = 0;
+  }
+
+  if(typeof oldValue == "undefined"){
+    oldValue = 0;
+  }
+
+  if($scope.master_registrations.full_or_ins == 0){
+
+    var remains = newValue - oldValue;
+
+    for(var i = $scope.fee_installments_array.length - 1; i >= 0 ; i-- ){
+      if($scope.fee_installments_array[i].amount == 0){
+        $scope.fee_installments.splice(i, 1);
+      }else if($scope.fee_installments_array[i].amount >= remains){
+         $scope.fee_installments_array[i].amount -= remains;
+         break;
+      }
+
+    }
+
+  }
+
+});
 
 }]);
