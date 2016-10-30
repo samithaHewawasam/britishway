@@ -6,7 +6,7 @@ abstract class database extends PDO
 
     private $sql;
     private $sqlSync;
-    private $response = array('commit' => false, 'error' => null, 'rollback' => false);
+    private $response = array('commit' => false, 'error' => null, 'error_alert' => null, 'rollback' => false);
     private $result = array('data' => array(), 'error' => NULL);
 
     public function __construct()
@@ -16,6 +16,7 @@ abstract class database extends PDO
         parent::__construct('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD, array(
             PDO::ATTR_PERSISTENT => true
         ));
+        parent::setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     }
 
@@ -45,6 +46,9 @@ abstract class database extends PDO
            $this->response['last_insert_id'] = $arguments[0]['last_insert_id'];
        }
        catch (PDOException $e) {
+          if($e->errorInfo[1] == 1062){
+            $this->response['error_alert'] = "Duplicate recode found";
+          }
           $this->response['error'] = $e->getMessage();
           $this->response['rollback'] = parent::rollBack();
        }

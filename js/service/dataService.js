@@ -18,11 +18,11 @@ app.service('dataService', function() {
 
 app.service('RegistrationService', ['Ajax', 'authoService', function(Ajax, authoService) {
 
-  this.get = function() {
+  this.get = function(id) {
 
     return Ajax.get({
       "url": "php/master_registrations/registrations.php",
-      "data": authoService.isLogged()
+      "data": { 'id' :id }
     });
 
   };
