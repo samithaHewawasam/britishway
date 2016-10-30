@@ -104,7 +104,7 @@ $scope.$watch('master_registrations.discount', function(newValue, oldValue){
     var remains = newValue - oldValue;
 
     for(var i = $scope.fee_installments_array.length - 1; i >= 0 ; i-- ){
-      if($scope.fee_installments_array[i].amount == 0){
+      if($scope.fee_installments[i].amount == 0){
         $scope.fee_installments.splice(i, 1);
       }else if($scope.fee_installments_array[i].amount >= remains){
          $scope.fee_installments_array[i].amount -= remains;
