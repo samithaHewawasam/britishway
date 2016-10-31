@@ -1,0 +1,51 @@
+<div class="main-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+      <form name=master_payments_form novalidate>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.master_reg_id.$invalid &&!master_payments_form.master_reg_id.$pristine}">
+          <label>Registration No</label>
+          <input type="text" class="form-control" name="master_reg_id" ng-model="master_payments.master_reg_no" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.pay_date.$invalid &&!master_payments_form.pay_date.$pristine}">
+          <label>Pay Date</label>
+          <input type="text" class="form-control" name="pay_date"  ng-change="findReceipt(master_payments.pay_date)" ng-model="master_payments.pay_date" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.receipt.$invalid &&!master_payments_form.receipt.$pristine}">
+          <label>Receipt No</label>
+          <input type="text" class="form-control" name="receipt" ng-model="master_payments.receipt" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.amount.$invalid &&!master_payments_form.amount.$pristine}">
+          <label>Amount</label>
+          <input type="text" class="form-control" name="amount" ng-model="master_payments.amount" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.pay_type.$invalid &&!master_payments_form.pay_type.$pristine}">
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active" ng-click="payTypeCheck(1)">
+              <input type="radio" name="pay_type" ng-model="master_payments.pay_type" value="1"  autocomplete="off" checked> Cash
+            </label>
+            <label class="btn btn-primary" ng-click="payTypeCheck(2)">
+              <input type="radio" name="pay_type" ng-model="master_payments.pay_type" value="2"  autocomplete="off"> Cheque
+            </label>
+            <label class="btn btn-primary" ng-click="payTypeCheck(3)">
+              <input type="radio" name="pay_type" ng-model="master_payments.pay_type" value="3"  autocomplete="off"> Credit/Debit Card
+            </label>
+            <label class="btn btn-primary" ng-click="payTypeCheck(4)">
+              <input type="radio" name="pay_type" ng-model="master_payments.pay_type" value="4"  autocomplete="off"> Bank Deposits
+            </label>
+          </div>
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-hide="master_payments.pay_type == 1" ng-class="{ 'has-error': master_payments_form.bank_name.$invalid &&!master_payments_form.bank_name.$pristine}">
+          <label>Bank Name</label>
+          <input type="text" class="form-control" name="bank_name" ng-model="master_payments.bank_name" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12" ng-hide="master_payments.pay_type == 1" ng-class="{ 'has-error': master_payments_form.reference.$invalid &&!master_payments_form.reference.$pristine}">
+          <label>Reference</label>
+          <input type="text" class="form-control" name="reference" ng-model="master_payments.reference" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_payments_form.$invalid" class="btn create-btn" ng-click="savemaster_payments(master_payments)">Create</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

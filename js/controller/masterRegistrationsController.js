@@ -1,10 +1,14 @@
 app.controller('masterRegistrationsController', ['$scope', 'dataService', '$location', 'Ajax', 'getData', function($scope, dataService, $location, Ajax, getData) {
 
-  $scope.courses = getData.courses.data;
+  if (getData.hasOwnProperty('courses')) {
+    $scope.courses = getData.courses.data;
+  }
 
   function MasterRegistrations() {
     this.reg_no = "";
-    this.student_id = getData.student_id.data[0].student_id;
+    if (getData.hasOwnProperty('student_id')) {
+      this.student_id = getData.student_id.data[0].student_id;
+    }
     this.full_or_ins = 1;
   }
   $scope.master_registrations = new MasterRegistrations();
@@ -111,6 +115,7 @@ app.controller('masterRegistrationsController', ['$scope', 'dataService', '$loca
       if(response.commit  == 1){
         $scope.master_registrations = new MasterRegistrations();
         alert("Saved");
+        window.location = "#payments_add?id="+response.last_insert_id;
       }else{
         alert("Error");
       }

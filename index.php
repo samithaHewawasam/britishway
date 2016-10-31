@@ -139,6 +139,7 @@
 <script src="js/controller/masterStudentsController.js"></script>
 <script src="js/controller/masterRegistrationsController.js"></script>
 <script src="js/controller/masterBatchesController.js"></script>
+<script src="js/controller/masterPaymentsController.js"></script>
 <script src="js/vendor/FileSaver.js"></script>
 
 </body>

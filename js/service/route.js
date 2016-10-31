@@ -19,6 +19,23 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+        .when('/payments_add', {
+            title: 'Payments',
+            templateUrl: 'views/master_payments/add.html',
+            controller: 'masterPaymentsController',
+            resolve: {
+                getData: function($location, PaymentService, ReceiptService, $q) {
+
+                  return $q.all([PaymentService.get($location.search().id), ReceiptService.get()]).then(function(results){
+
+                    return {
+                       'reg_no' : results[0].reg_no,
+                       'new_receipt' : results[1].new_receipt
+                    };
+                });
+            }
+          }
+        })
         .when('/batch_add', {
             title: 'Batches',
             templateUrl: 'views/master_batches/add.html',

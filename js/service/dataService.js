@@ -42,6 +42,33 @@ app.service('BatchService', ['Ajax', 'authoService', function(Ajax, authoService
 
 }]);
 
+
+app.service('PaymentService', ['Ajax', 'authoService', function(Ajax, authoService) {
+
+  this.get = function(id) {
+
+    return Ajax.get({
+      "url": "php/master_payments/findRegNoById.php",
+      "data": {'id' : id}
+    });
+
+  };
+
+}]);
+
+app.service('ReceiptService', ['Ajax', 'authoService', function(Ajax, authoService) {
+
+  this.get = function() {
+
+    return Ajax.get({
+      "url": "php/master_payments/new_receipt.php",
+      "data": null
+    });
+
+  };
+
+}]);
+
 app.service('BatchEditService', ['Ajax', 'authoService', function(Ajax, authoService) {
 
   this.get = function(id) {
