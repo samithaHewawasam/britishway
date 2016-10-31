@@ -108,7 +108,12 @@ app.controller('masterRegistrationsController', ['$scope', 'dataService', '$loca
       "data": data
     }).then(function(response) {
 
-
+      if(response.commit  == 1){
+        $scope.master_registrations = new MasterRegistrations();
+        alert("Saved");
+      }else{
+        alert("Error");
+      }
 
    });
 
