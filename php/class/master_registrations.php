@@ -33,18 +33,19 @@ class master_registrations extends database
     {
 
         $registrations_index['registrations'] = parent::selectQuery(array(
-            "query" => "SELECT CONCAT(?, mc.course_code, '-',LPAD(RIGHT(mr.reg_no, 6) + 1, 6, '0')) reg_no
-    FROM `master_registrations` mr INNER JOIN `master_branches` mb ON mr.branch_id = mb.id
+            "query" => "SELECT IF(count(*) = 0, CONCAT(?, mc.course_code, '-',LPAD(1, 6, '0')) , CONCAT(?, mc.course_code, '-',LPAD(count(*) + 1, 6, '0')) ) reg_no
+    FROM `master_registrations` mr
     INNER JOIN `master_courses` mc ON mc.id = mr.course_id WHERE mc.id = ?
     ORDER BY mr.reg_no DESC LIMIT 1",
             "data" => array(
+                BRANCH_CODE,
                 BRANCH_CODE,
                 $course_id
             )
         ));
 
         $registrations_index['batches'] = parent::selectQuery(array(
-            "query" => "SELECT `batch_code` FROM `master_batches` WHERE `batch_course_id` = ? AND `batch_status` IS TRUE",
+            "query" => "SELECT `id`,`batch_code` FROM `master_batches` WHERE `batch_course_id` = ? AND `batch_status` IS TRUE",
             "data" => array(
                 $course_id
             )
@@ -95,6 +96,13 @@ class master_registrations extends database
       }
 
       return $registrations_index;
+
+    }
+
+    public function add($data)
+    {
+
+        return parent::wrapperForRegistrations($data);
 
     }
 
