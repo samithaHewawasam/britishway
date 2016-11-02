@@ -16,6 +16,13 @@
     "tests"
   ],
   "dependencies": {
-    "angular-strap": "^2.3.10"
+    "angular-animate": "^1.5.8",
+    "angular-cookies": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular": "^1.5.8",
+    "font-awesome": "fontawesome#^4.6.3",
+    "bootstrap": "^3.3.7",
+    "Ionicons": "ionicons#^2.0.1",
+    "jquery": "^3.1.1"
   }
 }
