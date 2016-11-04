@@ -1,4 +1,4 @@
-var app = angular.module('exam_module', ['ngRoute', 'ngCookies', 'ngAnimate', 'mgcrea.ngStrap']);
+var app = angular.module('exam_module', ['ngRoute', 'ngCookies', 'ngAnimate', 'mgcrea.ngStrap', 'daterangepicker']);
 
 app.run(['$rootScope', '$route', function($rootScope, $route) {
     $rootScope.$on('$routeChangeSuccess', function() {

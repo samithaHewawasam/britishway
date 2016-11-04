@@ -81,3 +81,16 @@ app.service('BatchEditService', ['Ajax', 'authoService', function(Ajax, authoSer
   };
 
 }]);
+
+app.service('ReportDefaultService', ['Ajax', 'authoService', function(Ajax, authoService) {
+
+  this.get = function() {
+
+    return Ajax.get({
+      "url": "php/report/default.php",
+      "data": null
+    });
+
+  };
+
+}]);

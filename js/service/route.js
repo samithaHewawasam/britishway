@@ -3,7 +3,21 @@ app.config(function($routeProvider, $locationProvider) {
 //$locationProvider.html5Mode(true);
 
     $routeProvider
-
+        .when('/', {
+            title: 'Dashboard',
+            templateUrl: 'views/index.html',
+            controller: 'masterStudentsController'
+        })
+        .when('/income', {
+            title: 'Income',
+            templateUrl: 'views/reports/income.html',
+            controller: 'reportIncomeController',
+            resolve: {
+                getData: function(ReportDefaultService) {
+                    return ReportDefaultService.get();
+                }
+            }
+        })
         .when('/students_add', {
             title: 'Students',
             templateUrl: 'views/master_students/add.html',
