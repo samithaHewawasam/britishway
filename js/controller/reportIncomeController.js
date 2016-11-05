@@ -2,6 +2,9 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
 
   function Report(){
 
+    this.course_id = "";
+    this.batch_id = "";
+
     this.date = {
       startDate: moment(),
       endDate: moment()
@@ -16,7 +19,19 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
                  'This Month': [moment().startOf('month'), moment().endOf('month')],
                  'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
-    }
+      };
+
+      this.getPayType  = function (id){
+          if(id == 1){
+            return "Cash";
+          }else if(id == 2){
+            return "Cheque";
+          }else if(id == 3){
+            return "Credit/Debit Card";
+          }else if(id == 4){
+            return "Bank Deposits";
+          }
+        }
 
   }
 
@@ -26,5 +41,45 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
     $scope.courses = getData.courses.data;
     $scope.batches = getData.batches.data;
   }
+
+  $scope.findBatchByCourseId = function(course_id){
+
+    Ajax.get({
+      "url": "php/report/findBatchByCourseId.php",
+      "data": {
+        'course_id': course_id
+      }
+    }).then(function(response) {
+
+      if (typeof response.batches !== 'undefined') {
+        $scope.batches = response.batches.data;
+      } else {
+        $scope.batches = "";
+      }
+
+
+    });
+
+  }
+
+  $scope.$watchCollection('report', function(newVal, oldVal){
+
+    Ajax.post({
+      "url": "php/report/income.php",
+      "data": {
+        'startDate': newVal.date.startDate.toDate(),
+        'endDate':  newVal.date.endDate.toDate(),
+        'course_id' : newVal.course_id,
+        'batch_id' : newVal.batch_id
+      }
+    }).then(function(response) {
+
+      $scope.incomes = response;
+
+
+    });
+
+  });
+
 
 }]);

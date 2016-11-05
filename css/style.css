@@ -49,3 +49,10 @@
     height: 500px;
     overflow-y: scroll;
 }
+
+.pay_type {
+    color: black;
+    font-weight: 700;
+    padding: 5px;
+    text-align: center;
+}
