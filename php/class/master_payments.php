@@ -4,6 +4,8 @@ class master_payments extends database
 {
 
     private $payments_index = array();
+    private $paid_amount = 0;
+    private $paying = 0;
 
     public function index()
     {
@@ -91,22 +93,66 @@ class master_payments extends database
         die();
       }
 
+      $this->payments_index['arguments'] = array();
 
-        return parent::wrapper(array(
-          array(
-            'query' => "INSERT INTO `master_payments`(`master_reg_id`, `receipt`, `amount`, `pay_date`, `pay_type`, `bank_name`, `reference`, `operator_id`)
-            VALUES (?,?,?,?,?,?,?,?)",
-            'data' => array(
-              $data->master_reg_id,
-              $data->receipt,
-              $data->amount,
-              $data->pay_date,
-              $data->pay_type,
-              $data->bank_name,
-              $data->reference,
-              1
+        array_push($this->payments_index['arguments'], array(
+          'query' => "INSERT INTO `master_payments`(`master_reg_id`, `receipt`, `amount`, `pay_date`, `pay_type`, `bank_name`, `reference`, `operator_id`)
+          VALUES (?,?,?,?,?,?,?,?)",
+          'data' => array(
+            $data->master_reg_id,
+            $data->receipt,
+            $data->amount,
+            $data->pay_date,
+            $data->pay_type,
+            $data->bank_name,
+            $data->reference,
+            1
+          )
+        ));
+
+        array_push($this->payments_index['arguments'], array(
+          'query' => "UPDATE `master_registrations` SET `total_paid`= `total_paid` + ? WHERE `id` = ?",
+          'data' => array(
+            $data->amount,
+            $data->master_reg_id
+          )
+        ));
+
+        $this->payments_index['dues'] = parent::selectQuery(array(
+            "query" => "SELECT *, (`amount` - `paid_amount`) owed FROM `master_student_installments` WHERE (`amount` - `paid_amount`) != 0 AND master_reg_id = ? ORDER BY ins_id",
+            "data" => array(
+              $data->master_reg_id
             )
-        )));
+        ));
+
+
+        $this->paid_amount = $data->amount;
+
+        foreach ($this->payments_index['dues']['data'] as $dues) {
+            // There's money left
+            if ($dues->owed - $this->paid_amount < 0) {
+                $this->paying = $dues->owed + $dues->paid_amount;
+                $this->paid_amount -= $dues->owed;
+            } else {
+                // No money left
+                $this->paying = $dues->paid_amount + $this->paid_amount;
+                $this->paid_amount -= $this->paying;
+            }
+            // If there's money left
+            if ($this->paying > 0) {
+                array_push($this->payments_index['arguments'], array(
+                    'query' => "UPDATE `master_student_installments` SET `paid_amount` = ? , `paid_date` = ? WHERE `master_reg_id` = ? AND `ins_id` = ?",
+                    'data' => array(
+                      $this->paying,
+                      $data->pay_date,
+                      $data->master_reg_id,
+                      $dues->ins_id
+                    )
+                ));
+            }
+        }
+
+        return parent::wrapper($this->payments_index['arguments']);
 
     }
 

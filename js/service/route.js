@@ -1,17 +1,56 @@
 app.config(function($routeProvider, $locationProvider) {
 
 //$locationProvider.html5Mode(true);
-
     $routeProvider
         .when('/', {
             title: 'Dashboard',
             templateUrl: 'views/index.html',
             controller: 'masterStudentsController'
         })
+        .when('/search', {
+            title: 'Search',
+            templateUrl: 'views/reports/search.html',
+            controller: 'reportSearchController',
+            resolve: {
+                getData: function($location, searchService) {
+                    return searchService.get($location.search().r);
+                }
+            }
+        })
         .when('/income', {
             title: 'Income',
             templateUrl: 'views/reports/income.html',
             controller: 'reportIncomeController',
+            resolve: {
+                getData: function(ReportDefaultService) {
+                    return ReportDefaultService.get();
+                }
+            }
+        })
+        .when('/batch_wise', {
+            title: 'Batch Wise',
+            templateUrl: 'views/reports/batch_wise.html',
+            controller: 'reportBatchWiseController',
+            resolve: {
+                getData: function(ReportDefaultService) {
+                    return ReportDefaultService.get();
+                }
+            }
+        })
+        .when('/registrations', {
+            title: 'Income',
+            templateUrl: 'views/reports/registrations.html',
+            controller: 'reportRegistrationsController',
+            resolve: {
+                getData: function(ReportDefaultService) {
+                    return ReportDefaultService.get();
+                }
+            }
+        })
+        .when('/dues', {
+            title: 'Dues',
+            templateUrl: 'views/reports/dues.html',
+            controller: 'reportDuesController',
             resolve: {
                 getData: function(ReportDefaultService) {
                     return ReportDefaultService.get();

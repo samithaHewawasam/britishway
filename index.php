@@ -289,7 +289,14 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-
+			<div class="sidebar-form">
+			        <div class="input-group">
+			          <input name="q" class="form-control" placeholder="Search..." type="text" ng-model="global_search">
+			              <span class="input-group-btn">
+			                <a href="#/search?r={{global_search}}" class="btn btn-flat"><i class="fa fa-search"></i></a>
+			              </span>
+			        </div>
+			      </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
@@ -347,13 +354,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.6
-    </div>
-    <strong>Copyright &copy; 2016-2016 <a href="#">Group 5</a>.</strong> All rights
-    reserved.
-  </footer>
 
 
   <!-- Add the sidebar's background. This div must be placed
@@ -384,6 +384,10 @@
 <script src="js/controller/masterBatchesController.js"></script>
 <script src="js/controller/masterPaymentsController.js"></script>
 <script src="js/controller/reportIncomeController.js"></script>
+<script src="js/controller/reportRegistrationsController.js"></script>
+<script src="js/controller/reportBatchWiseController.js"></script>
+<script src="js/controller/reportDuesController.js"></script>
+<script src="js/controller/reportSearchController.js"></script>
 <script src="js/vendor/FileSaver.js"></script>
 
 </body>

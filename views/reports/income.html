@@ -5,14 +5,17 @@
             <div class="box-header">
               <div class="row">
                 <div class="col-lg-3">
+                  <label>Date/Range</label>
                   <input date-range-picker class="form-control date-picker" type="text" ng-model="report.date" options="report.setRanges"/>
                 </div>
                 <div class="col-lg-3">
+                  <label>Course</label>
                   <select ng-options="course.id as course.course_name for course in courses"  ng-change="findBatchByCourseId(report.course_id)" name="course_id" class="form-control" ng-required="true" ng-model="report.course_id">
                     <option value="">ALL</option>
                   </select>
                 </div>
                 <div class="col-lg-3">
+                  <label>Batch</label>
                   <select ng-options="batch.id as batch.batch_code for batch in batches"  name="batch_id" class="form-control" ng-required="true" ng-model="report.batch_id">
                     <option value="">ALL</option>
                   </select>
@@ -22,8 +25,9 @@
                 </div>
               </div>
             </div>
-                <div ng-repeat="(key, value) in incomes" class="box-body">
+                <div ng-repeat="(key, value) in incomes" class="box-body" ng-if="key!='grandTotal'">
                   <h4 class="pay_type"><i class="fa fa-money"></i> {{report.getPayType(key)}}</h4>
+                  <hr>
                   <div ng-repeat="(k, val) in value" ng-if="k!='payTypeTotal'">
                     <h5><i class="fa fa-user"></i> - {{val[0].user_display_name}}</h5>
                     <table class="table table-bordered">
@@ -40,7 +44,7 @@
                       <tbody>
                         <tr ng-repeat="income in val">
                           <td class="">{{income.pay_date}}</td>
-                          <td class="">{{income.reg_no}}</td>
+                          <td class=""><a href="#/search?r={{income.reg_no}}" target="_blank" >{{income.reg_no}}</a></td>
                           <td class="">{{income.name_full}}</td>
                           <td class="">{{income.course_name}}</td>
                           <td class="">{{income.batch_code}}</td>
@@ -53,12 +57,10 @@
                   </div>
                   <h5 style="color: black; font-weight: 900; text-align: right; margin-right: 54px;">{{report.getPayType(key)}} TOTAL : {{value['payTypeTotal'] | currency:"" }}</h5>
                 </div>
-
-          <!-- /.box -->
-
-          <!-- /.box -->
+                <h4 style="font-weight: 900; text-align: right; background: rgb(60, 141, 188) none repeat scroll 0% 0%; color: white; padding: 20px;"> GRAND TOTAL : {{incomes.grandTotal | currency:"" }}</h4>
         </div>
         <!-- /.col -->
       </div>
+    </div>
       <!-- /.row -->
     </section>

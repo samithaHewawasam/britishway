@@ -1,0 +1,62 @@
+<section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <div class="row">
+                <div class="col-lg-3">
+                  <label>Date/Range</label>
+                  <input date-range-picker class="form-control date-picker" type="text" ng-model="report.date" options="report.setRanges"/>
+                </div>
+                <div class="col-lg-3">
+                  <label>Course</label>
+                  <select ng-options="course.id as course.course_name for course in courses"  ng-change="findBatchByCourseId(report.course_id)" name="course_id" class="form-control" ng-required="true" ng-model="report.course_id">
+                    <option value="">ALL</option>
+                  </select>
+                </div>
+                <div class="col-lg-3">
+                  <label>Batch</label>
+                  <select ng-options="batch.id as batch.batch_code for batch in batches"  name="batch_id" class="form-control" ng-required="true" ng-model="report.batch_id">
+                    <option value="">ALL</option>
+                  </select>
+                </div>
+                <div class="col-lg-3">
+
+                </div>
+              </div>
+            </div>
+          <div class="box-body">
+          <table class="table table-bordered">
+            <thead>
+            <tr role="row">
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Reg No</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Name</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Contact No</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Course</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Batch</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Due Date</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Due Gap</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Due Amount</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="due in dues">
+                <td class="">{{due.reg_no}}</td>
+                <td class="">{{due.name_full}}</td>
+                <td class="">{{due.contact_no_1}}</td>
+                <td class="">{{due.course_name}}</td>
+                <td class="">{{due.batch}}</td>
+                <td class="">{{due.due_date}}</td>
+                <td class="">{{due.due_gap}}</td>
+                <td class="">{{due.upto | currency:"" }}</td>
+
+              <tr>
+                <tr style="font-weight: 900; text-align: right; background: rgb(60, 141, 188) none repeat scroll 0% 0%; color: white; padding: 20px;">
+                  <td colspan="8">TOTAL DUES : {{dues.total | currency:""}}</td>
+                <tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>

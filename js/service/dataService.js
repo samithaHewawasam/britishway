@@ -94,3 +94,16 @@ app.service('ReportDefaultService', ['Ajax', 'authoService', function(Ajax, auth
   };
 
 }]);
+
+app.service('searchService', ['Ajax', 'authoService', function(Ajax, authoService) {
+
+  this.get = function(r) {
+
+    return Ajax.get({
+      "url": "php/report/search.php",
+      "data": {'reg_no' : r }
+    });
+
+  };
+
+}]);

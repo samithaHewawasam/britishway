@@ -1,4 +1,4 @@
-app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 'Ajax', 'getData', function($scope, dataService, $location, Ajax, getData) {
+app.controller('reportBatchWiseController', ['$scope', 'dataService', '$location', 'Ajax', 'getData', function($scope, dataService, $location, Ajax, getData) {
 
   function Report(){
 
@@ -20,18 +20,6 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
                  'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
       };
-
-      this.getPayType  = function (id){
-          if(id == 1){
-            return "Cash";
-          }else if(id == 2){
-            return "Cheque";
-          }else if(id == 3){
-            return "Credit/Debit Card";
-          }else if(id == 4){
-            return "Bank Deposits";
-          }
-        }
 
   }
 
@@ -65,7 +53,7 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
   $scope.$watchCollection('report', function(newVal, oldVal){
 
     Ajax.post({
-      "url": "php/report/income.php",
+      "url": "php/report/batch_wise.php",
       "data": {
         'startDate': newVal.date.startDate.toDate(),
         'endDate':  newVal.date.endDate.toDate(),
@@ -74,28 +62,19 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
       }
     }).then(function(response) {
 
-      response.grandTotal = 0;
+      if(typeof response.batch_wise !== "undefined"){
 
-      for(var pt in response){
+        $scope.batch_wises = [];
+        $scope.batch_wises = response.batch_wise.data;
+        $scope.batch_wises.total = 0;
 
-        response[pt].payTypeTotal = 0;
+        for(var i = 0; i < response.batch_wise.data.length; i++){
 
-        for(var ot in response[pt]){
-
-          response[pt][ot].operatorTotal = 0;
-
-          for(var ts = 0; ts < response[pt][ot].length; ts++){
-            response[pt].payTypeTotal += parseFloat(response[pt][ot][ts].amount);
-            response[pt][ot].operatorTotal += parseFloat(response[pt][ot][ts].amount);
-            response.grandTotal += parseFloat(response[pt][ot][ts].amount);
-          }
+          $scope.batch_wises.total += parseInt(response.batch_wise.data[i].total);
 
         }
 
       }
-
-      $scope.incomes = response;
-
 
     });
 

@@ -1,4 +1,4 @@
-app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 'Ajax', 'getData', function($scope, dataService, $location, Ajax, getData) {
+app.controller('reportRegistrationsController', ['$scope', 'dataService', '$location', 'Ajax', 'getData', function($scope, dataService, $location, Ajax, getData) {
 
   function Report(){
 
@@ -20,18 +20,6 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
                  'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
       };
-
-      this.getPayType  = function (id){
-          if(id == 1){
-            return "Cash";
-          }else if(id == 2){
-            return "Cheque";
-          }else if(id == 3){
-            return "Credit/Debit Card";
-          }else if(id == 4){
-            return "Bank Deposits";
-          }
-        }
 
   }
 
@@ -65,7 +53,7 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
   $scope.$watchCollection('report', function(newVal, oldVal){
 
     Ajax.post({
-      "url": "php/report/income.php",
+      "url": "php/report/registrations.php",
       "data": {
         'startDate': newVal.date.startDate.toDate(),
         'endDate':  newVal.date.endDate.toDate(),
@@ -74,28 +62,19 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
       }
     }).then(function(response) {
 
-      response.grandTotal = 0;
+      if(typeof response.registrations !== "undefined"){
 
-      for(var pt in response){
+        $scope.registrations = [];
+        $scope.registrations = response.registrations.data;
+        $scope.registrations.total = 0;
 
-        response[pt].payTypeTotal = 0;
+        for(var i = 0; i < response.registrations.data.length; i++){
 
-        for(var ot in response[pt]){
-
-          response[pt][ot].operatorTotal = 0;
-
-          for(var ts = 0; ts < response[pt][ot].length; ts++){
-            response[pt].payTypeTotal += parseFloat(response[pt][ot][ts].amount);
-            response[pt][ot].operatorTotal += parseFloat(response[pt][ot][ts].amount);
-            response.grandTotal += parseFloat(response[pt][ot][ts].amount);
-          }
+          $scope.registrations.total += parseInt(response.registrations.data[i].total);
 
         }
 
       }
-
-      $scope.incomes = response;
-
 
     });
 

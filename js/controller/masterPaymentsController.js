@@ -58,6 +58,7 @@ $scope.savemaster_payments = function(data){
 
     if(response.commit  == 1){
       alert("Saved");
+      window.location = "#payments_add";
       $scope.master_payments = new Payment();
     }else{
       alert(response.error_alert);
