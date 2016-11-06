@@ -24,7 +24,7 @@
             </div>
                 <div ng-repeat="(key, value) in incomes" class="box-body">
                   <h4 class="pay_type"><i class="fa fa-money"></i> {{report.getPayType(key)}}</h4>
-                  <div ng-repeat="(k, val) in value">
+                  <div ng-repeat="(k, val) in value" ng-if="k!='payTypeTotal'">
                     <h5><i class="fa fa-user"></i> - {{val[0].user_display_name}}</h5>
                     <table class="table table-bordered">
                       <thead>
@@ -45,11 +45,13 @@
                           <td class="">{{income.course_name}}</td>
                           <td class="">{{income.batch_code}}</td>
                           <td class="">{{income.receipt}}</td>
-                          <td class="">{{income.amount}}</td>
+                          <td class="">{{income.amount | currency:"" }}</td>
                       </tr>
+                      <tr><td colspan="6" style="color: black; font-weight: 900; text-align: right;">TOTAL</td><td >{{val['operatorTotal'] | currency:""}}</td></tr>
                     </tbody>
                     </table>
                   </div>
+                  <h5 style="color: black; font-weight: 900; text-align: right; margin-right: 54px;">{{report.getPayType(key)}} TOTAL : {{value['payTypeTotal'] | currency:"" }}</h5>
                 </div>
 
           <!-- /.box -->
@@ -60,25 +62,3 @@
       </div>
       <!-- /.row -->
     </section>
-
-    <!--
-    <table>
-      <tr ng-repeat="(k, val) in value">
-        <td class="">{{k}}
-          <table>
-            <tr ng-repeat="income in val">
-              <td class="">{{income.pay_date}}</td>
-              <td class="">{{income.reg_no}}</td>
-              <td class="">{{income.name_full}}</td>
-              <td class="">{{income.course_name}}</td>
-              <td class="">{{income.batch_code}}</td>
-              <td class="">{{income.receipt}}</td>
-              <td class="">{{income.amount}}</td>
-              <td class="">{{income.pay_type}}</td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-
-  -->

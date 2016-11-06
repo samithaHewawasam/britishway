@@ -74,6 +74,23 @@ app.controller('reportIncomeController', ['$scope', 'dataService', '$location', 
       }
     }).then(function(response) {
 
+      for(var pt in response){
+
+        response[pt].payTypeTotal = 0;
+
+        for(var ot in response[pt]){
+
+          response[pt][ot].operatorTotal = 0;
+
+          for(var ts = 0; ts < response[pt][ot].length; ts++){
+            response[pt].payTypeTotal += parseFloat(response[pt][ot][ts].amount);
+            response[pt][ot].operatorTotal += parseFloat(response[pt][ot][ts].amount);
+          }
+
+        }
+
+      }
+
       $scope.incomes = response;
 
 
