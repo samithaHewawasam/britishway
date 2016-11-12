@@ -6,6 +6,8 @@ app.controller('masterRegistrationsController', ['$scope', 'dataService', '$loca
 
   function MasterRegistrations() {
     this.reg_no = "";
+    this.discount = 0;
+    this.reg_date = (new Date()).toISOString().substring(0, 10);
     if (getData.hasOwnProperty('student_id')) {
       this.student_id = getData.student_id.data[0].student_id;
     }
@@ -61,7 +63,7 @@ app.controller('masterRegistrationsController', ['$scope', 'dataService', '$loca
         $scope.master_registrations.fee = response.fee_structure.data[0].gross;
         $scope.master_registrations.reg_fee = response.fee_structure.data[0].registration_fee;
       }
-      if ($scope.master_registrations.fullOrIns == 0 && response.hasOwnProperty('fee_installments')) {
+      if (response.hasOwnProperty('fee_installments')) {
         $scope.master_registrations.fee_installments = response.fee_installments.data;
       }
 
@@ -94,7 +96,7 @@ app.controller('masterRegistrationsController', ['$scope', 'dataService', '$loca
         }
 
 
-      if (fullOrIns == 0 && response.hasOwnProperty('fee_installments')) {
+      if (response.hasOwnProperty('fee_installments')) {
         $scope.master_registrations.fee_installments = response.fee_installments.data;
       }
 
@@ -117,7 +119,7 @@ app.controller('masterRegistrationsController', ['$scope', 'dataService', '$loca
         alert("Saved");
         window.location = "#payments_add?id="+response.last_insert_id;
       }else{
-        alert("Error");
+        alert(response.error_alert);
       }
 
    });

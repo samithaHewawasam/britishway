@@ -5,7 +5,7 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/', {
             title: 'Dashboard',
             templateUrl: 'views/index.html',
-            controller: 'masterStudentsController'
+            controller: 'indexController'
         })
         .when('/search', {
             title: 'Search',
@@ -38,7 +38,7 @@ app.config(function($routeProvider, $locationProvider) {
             }
         })
         .when('/registrations', {
-            title: 'Income',
+            title: 'Registrations',
             templateUrl: 'views/reports/registrations.html',
             controller: 'reportRegistrationsController',
             resolve: {
@@ -71,6 +71,34 @@ app.config(function($routeProvider, $locationProvider) {
                     return RegistrationService.get($location.search().id);
                 }
             }
+        })
+        .when('/registrations_edit', {
+            title: 'Registrations',
+            templateUrl: 'views/master_registrations/edit.html',
+            controller: 'masterRegistrationsEditController',
+            resolve: {
+                getData: function($location, RegistrationEditService, BatchService, $q ) {
+                    return $q.all([RegistrationEditService.get($location.search().r), BatchService.get()]).then(function(results){
+
+                      return {
+                         'registration' : results[0].registration.data[0],
+                         'installments' : results[0].installments.data[0],
+                         'courses' : results[1].courses,
+                         'reg_no' : $location.search().r
+                      };
+                  });
+                }
+            }
+        })
+        .when('/registrations_delete', {
+            title: 'Registration Delete',
+            templateUrl: 'views/master_registrations/delete.html',
+            controller: 'masterRegistrationsDeleteController'
+        })
+        .when('/payments_delete', {
+            title: 'Payment Delete',
+            templateUrl: 'views/master_payments/delete.html',
+            controller: 'masterPaymentsDeleteController'
         })
         .when('/payments_add', {
             title: 'Payments',

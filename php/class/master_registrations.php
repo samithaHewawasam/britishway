@@ -33,16 +33,39 @@ class master_registrations extends database
     {
 
         $this->registrations_index['registrations'] = parent::selectQuery(array(
-            "query" => "SELECT IF(count(*) = 0, CONCAT(?, mc.course_code, '-',LPAD(1, 6, '0')) , CONCAT(?, mc.course_code, '-',LPAD(count(*) + 1, 6, '0')) ) reg_no
+            "query" => "SELECT IF(count(*) = 0, CONCAT(?, mc.course_code, '-',LPAD(1, 6, '0')) , CONCAT(?, mc.course_code, '-',LPAD(RIGHT(MAX(mr.reg_no),6) + 1, 6, '0')) ) reg_no
     FROM `master_registrations` mr
-    INNER JOIN `master_courses` mc ON mc.id = mr.course_id WHERE mc.id = ?
-    ORDER BY mr.reg_no DESC LIMIT 1",
+    INNER JOIN `master_courses` mc ON mc.id = mr.course_id WHERE mc.id = ?",
             "data" => array(
                 BRANCH_CODE,
                 BRANCH_CODE,
                 $course_id
             )
         ));
+
+        $this->registrations_index['batches'] = parent::selectQuery(array(
+            "query" => "SELECT `id`,`batch_code` FROM `master_batches` WHERE `batch_course_id` = ? AND `batch_status` IS TRUE",
+            "data" => array(
+                $course_id
+            )
+        ));
+
+        $this->registrations_index['fee_structures'] = parent::selectQuery(array(
+            "query" => "SELECT mfs.id, mfs.fee_structure_code,course_fee_full,course_fee_ins,registration_fee,exam_fee
+            FROM `master_fee_structures` mfs INNER JOIN `master_courses` mc ON mfs.`course_id` = mc.id WHERE mc.id = ?
+            AND mfs.status IS TRUE",
+            "data" => array(
+                $course_id
+            )
+        ));
+
+        return $this->registrations_index;
+
+
+    }
+
+    public function coursesAndBatches($course_id)
+    {
 
         $this->registrations_index['batches'] = parent::selectQuery(array(
             "query" => "SELECT `id`,`batch_code` FROM `master_batches` WHERE `batch_course_id` = ? AND `batch_status` IS TRUE",
@@ -86,14 +109,14 @@ class master_registrations extends database
             )
         ));
 
-        $this->registrations_index['fee_installments'] = parent::selectQuery(array(
-            "query" => "SELECT *,IF(mfi.ins_id = 1, CURDATE(), IF( mfs.ins_days = 20, ADDDATE(CURDATE(), INTERVAL 20 DAY), ADDDATE(CURDATE(), INTERVAL mfi.ins_id -1 MONTH)) ) due_date FROM `master_fee_installments` mfi  INNER JOIN `master_fee_structures` mfs ON mfs.`id` = mfi.`master_fee_id` WHERE mfi.`master_fee_id` = ?",
-            "data" => array(
-                $id
-            )
-        ));
-
       }
+
+      $this->registrations_index['fee_installments'] = parent::selectQuery(array(
+          "query" => "SELECT *,IF(mfi.ins_id = 1, CURDATE(), IF( mfs.ins_days = 20, ADDDATE(CURDATE(), INTERVAL 20 DAY), ADDDATE(CURDATE(), INTERVAL mfi.ins_id -1 MONTH)) ) due_date FROM `master_fee_installments` mfi  INNER JOIN `master_fee_structures` mfs ON mfs.`id` = mfi.`master_fee_id` WHERE mfi.`master_fee_id` = ?",
+          "data" => array(
+              $id
+          )
+      ));
 
       return $this->registrations_index;
 
@@ -103,6 +126,46 @@ class master_registrations extends database
     {
 
         return parent::wrapperForRegistrations($data);
+
+    }
+
+    public function delete($id){
+
+      return parent::wrapper(array(
+        array(
+          'query' => "DELETE FROM `master_registrations` WHERE `reg_no` = ?",
+          'data' => array($id)
+      )));
+
+    }
+
+    public function edit_data($reg_no)
+    {
+
+        $this->registrations_index['registration'] = parent::selectQuery(array(
+            "query" => "SELECT  mr.reg_date, mr.reg_no, ms.`student_id`, ms.name_full, mc.id course_id, mc.course_name, mb.id batch_id, mb.batch_code,mr.fee, mr.net,mr.`total_paid`,mr.`reg_fee`,mr.`discount`,mr.`discount_comment`,mu.user_display_name FROM `master_registrations` mr
+            INNER JOIN `master_courses` mc ON mc.id = mr.course_id
+            LEFT JOIN `master_students` ms ON ms.id = mr.student_id
+            LEFT JOIN `master_users` mu ON mu.id = mr.operator_id
+            LEFT JOIN `master_batches` mb ON mb.id = mr.batch_id  WHERE mr.`reg_no` = ?",
+            "data" => array(
+                $reg_no
+            )
+        ));
+
+        $this->registrations_index['installments'] = parent::selectQuery(array(
+            "query" => "SELECT  msi.`ins_id`, msi.`amount`, msi.`paid_amount`, msi.`due_date`, msi.paid_date FROM `master_registrations` mr
+            INNER JOIN `master_courses` mc ON mc.id = mr.course_id
+            LEFT JOIN `master_students` ms ON ms.id = mr.student_id
+            LEFT JOIN `master_student_installments` msi ON msi.master_reg_id = mr.id
+            LEFT JOIN `master_users` mu ON mu.id = mr.operator_id
+            LEFT JOIN `master_batches` mb ON mb.id = mr.batch_id  WHERE mr.`reg_no` = ? ORDER BY msi.ins_id ASC",
+            "data" => array(
+                $reg_no
+            )
+        ));
+
+        return $this->registrations_index;
 
     }
 

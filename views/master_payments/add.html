@@ -2,24 +2,29 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
-      <form name=master_payments_form novalidate>
-        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.master_reg_id.$invalid &&!master_payments_form.master_reg_id.$pristine}">
+      <form name=master_payments_form novalidate ng-submit="savemaster_payments(master_payments)">
+        <div class="form-group col-lg-12 col-xs-12">
           <label>Registration No</label>
-          <input type="text" class="form-control" name="master_reg_id" ng-model="master_payments.master_reg_no" ng-required="true">
+          <input type="text" class="form-control" name="master_reg_id" ng-model="master_payments.master_reg_no" ng-required="true" ng-change="getThePayInfo(master_payments.master_reg_no)">
         </div>
-        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.pay_date.$invalid &&!master_payments_form.pay_date.$pristine}">
+        <div class="form-group col-lg-12 col-xs-12">
+          <label>Student Name</label>
+          <input type="text" class="form-control" name="master_reg_id" ng-model="master_payments.name_initials" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12">
+          <label>Due Amount</label>
+          <input type="text" class="form-control" name="master_reg_id" ng-model="master_payments.due">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12">
           <label>Pay Date</label>
           <input type="text" class="form-control" name="pay_date"  ng-change="findReceipt(master_payments.pay_date)" ng-model="master_payments.pay_date" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker ng-required="true">
         </div>
-        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.receipt.$invalid &&!master_payments_form.receipt.$pristine}">
+        <div class="form-group col-lg-12 col-xs-12">
           <label>Receipt No</label>
           <input type="text" class="form-control" name="receipt" ng-model="master_payments.receipt" ng-required="true">
         </div>
-        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.amount.$invalid &&!master_payments_form.amount.$pristine}">
-          <label>Amount</label>
-          <input type="text" class="form-control" name="amount" ng-model="master_payments.amount" ng-required="true">
-        </div>
-        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_payments_form.pay_type.$invalid &&!master_payments_form.pay_type.$pristine}">
+
+        <div class="form-group col-lg-12 col-xs-12">
           <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-primary active" ng-click="payTypeCheck(1)">
               <input type="radio" name="pay_type" ng-model="master_payments.pay_type" value="1"  autocomplete="off" checked> Cash
@@ -35,15 +40,61 @@
             </label>
           </div>
         </div>
-        <div class="form-group col-lg-12 col-xs-12" ng-hide="master_payments.pay_type == 1" ng-class="{ 'has-error': master_payments_form.bank_name.$invalid &&!master_payments_form.bank_name.$pristine}">
+
+        <div class="form-group col-lg-12 col-xs-12" ng-if="master_payments.pay_type == 1">
+          <label>Amount</label>
+          <input type="text" class="form-control" name="amount" ng-model="master_payments.cash_amount" ng-required="true" focus-me="">
+        </div>
+
+        <div class="form-group col-lg-12 col-xs-12" ng-if="master_payments.pay_type == 2">
+          <label>Amount</label>
+          <input type="text" class="form-control" name="amount" ng-model="master_payments.cheque_amount" ng-required="true" focus-me="">
+        </div>
+
+        <div class="form-group col-lg-12 col-xs-12" ng-if="master_payments.pay_type == 3">
+          <label>Amount</label>
+          <input type="text" class="form-control" name="amount" ng-model="master_payments.credit_amount" ng-required="true" focus-me="">
+        </div>
+
+        <div class="form-group col-lg-12 col-xs-12" ng-if="master_payments.pay_type == 4">
+          <label>Amount</label>
+          <input type="text" class="form-control" name="amount" ng-model="master_payments.bank_amount" ng-required="true" focus-me="">
+        </div>
+
+      <div class="row col-xs-12" ng-show="master_payments.pay_type == 2">
+        <div class="form-group col-lg-12 col-xs-12" >
           <label>Bank Name</label>
-          <input type="text" class="form-control" name="bank_name" ng-model="master_payments.bank_name" ng-required="true">
+          <input type="text" class="form-control" name="bank_name" ng-model="master_payments.cheque_bank_name" ng-required="true">
         </div>
-        <div class="form-group col-lg-12 col-xs-12" ng-hide="master_payments.pay_type == 1" ng-class="{ 'has-error': master_payments_form.reference.$invalid &&!master_payments_form.reference.$pristine}">
+        <div class="form-group col-lg-12 col-xs-12">
           <label>Reference</label>
-          <input type="text" class="form-control" name="reference" ng-model="master_payments.reference" ng-required="true">
+          <input type="text" class="form-control" name="reference" ng-model="master_payments.cheque_reference" ng-required="true">
         </div>
-        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_payments_form.$invalid" class="btn create-btn" ng-click="savemaster_payments(master_payments)">Create</a></div>
+      </div>
+
+      <div class="row col-xs-12" ng-show="master_payments.pay_type == 3">
+        <div class="form-group col-lg-12 col-xs-12" >
+          <label>Bank Name</label>
+          <input type="text" class="form-control" name="bank_name" ng-model="master_payments.credit_bank_name" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12">
+          <label>Reference</label>
+          <input type="text" class="form-control" name="reference" ng-model="master_payments.credit_reference" ng-required="true">
+        </div>
+      </div>
+
+      <div class="row col-xs-12" ng-show="master_payments.pay_type == 4">
+        <div class="form-group col-lg-12 col-xs-12" >
+          <label>Bank Name</label>
+          <input type="text" class="form-control" name="bank_name" ng-model="master_payments.diposits_bank_name" ng-required="true">
+        </div>
+        <div class="form-group col-lg-12 col-xs-12">
+          <label>Reference</label>
+          <input type="text" class="form-control" name="reference" ng-model="master_payments.diposits_reference" ng-required="true">
+        </div>
+      </div>
+
+        <div class="form-group col-lg-12"><input type="submit" class="btn create-btn btn-primary" value="Create"></div>
       </form>
     </div>
   </div>

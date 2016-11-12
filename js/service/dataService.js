@@ -107,3 +107,16 @@ app.service('searchService', ['Ajax', 'authoService', function(Ajax, authoServic
   };
 
 }]);
+
+app.service('RegistrationEditService', ['Ajax', 'authoService', function(Ajax, authoService) {
+
+  this.get = function(r) {
+
+    return Ajax.post({
+      "url": "php/master_registrations/edit_data.php",
+      "data": {'reg_no' : r }
+    });
+
+  };
+
+}]);

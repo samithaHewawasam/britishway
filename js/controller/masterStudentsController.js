@@ -10,7 +10,7 @@ $scope.save = function(data){
     if(response.commit == 1){
       window.location = "#registrations_add?id="+response.last_insert_id;
     }else{
-      alert("Error found");
+      alert(response.error_alert);
     }
 
   });

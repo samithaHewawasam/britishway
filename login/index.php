@@ -58,7 +58,7 @@ unset($_SESSION['Sys_U_Name']);
     <section class="login-wrap">
 
       <!-- Heading -->
-      <h1><i class="secondary">English Language Institute</i> <br><br><i class="main">British Way</i>  </h1><!-- // Heading -->
+      <h1><i class="secondary">FRONT OFFICE</i> <br><br><i class="main">British Way</i>  </h1><!-- // Heading -->
 
       <!-- Flip Card -->
 
@@ -108,7 +108,7 @@ unset($_SESSION['Sys_U_Name']);
 
             <!-- Content Footer -->
             <div class="content-footer">
-              <P>Need Help?</P>
+              <P></P>
             </div><!-- // Content Footer -->
 
           </div>
@@ -117,7 +117,7 @@ unset($_SESSION['Sys_U_Name']);
       </div><!-- //Flip Card -->
 
       <!-- Copyrights -->
-      <p class="copyrights">2015 &copy; All rights reserved - SLIATE</p><!-- // Copyrights -->
+      <p class="copyrights">2016 &copy; All rights reserved - Britishway</p><!-- // Copyrights -->
 
     </section><!-- // Login Wrap -->
 

@@ -1,4 +1,4 @@
-app.controller('masterPaymentsController', ['$scope', 'dataService', '$location', 'Ajax', 'getData', function($scope, dataService, $location, Ajax, getData) {
+app.controller('masterPaymentsController', ['$scope', '$rootScope', '$location', 'Ajax', 'getData', function($scope, $rootScope, $location, Ajax, getData) {
 
 
 function Payment(){
@@ -6,11 +6,17 @@ function Payment(){
   this.master_reg_id = "";
   this.pay_type = 1;
   this.receipt = "";
-  this.amount = "";
-  this.pay_date = "";
-  this.bank_name = "";
-  this.reference = "";
-
+  this.cash_amount = "";
+  this.cheque_amount = "";
+  this.credit_amount = "";
+  this.bank_amount = "";
+  this.pay_date = (new Date()).toISOString().substring(0, 10);
+  this.cheque_bank_name = "";
+  this.cheque_reference = "";
+  this.credit_bank_name = "";
+  this.credit_reference = "";
+  this.diposits_bank_name = "";
+  this.diposits_reference = "";
 }
 
 
@@ -20,6 +26,10 @@ if (getData.hasOwnProperty('reg_no') && typeof getData.reg_no !== 'undefined') {
 
   $scope.master_payments.master_reg_id  = getData.reg_no.data[0].id;
   $scope.master_payments.master_reg_no  = getData.reg_no.data[0].reg_no;
+  $scope.master_payments.name_initials  = getData.reg_no.data[0].name_initials;
+  $scope.master_payments.due  = getData.reg_no.data[0].due;
+
+
 
 }else if(getData.hasOwnProperty('new_receipt')){
 
@@ -48,6 +58,27 @@ $scope.findReceipt = function(pay_date){
   });
 
 }
+
+$scope.getThePayInfo = function(data){
+
+  if(data.length != 11){
+    return;
+  }
+
+  Ajax.get({
+    "url": "php/master_payments/findRegNoByRegNo.php",
+    "data": {
+      'reg_no': data
+    }
+  }).then(function(response) {
+
+    $scope.master_payments.master_reg_id  = response.reg_no.data[0].id;
+    $scope.master_payments.master_reg_no  = response.reg_no.data[0].reg_no;
+    $scope.master_payments.name_initials  = response.reg_no.data[0].name_initials;
+    $scope.master_payments.due  = response.reg_no.data[0].due;
+  });
+
+};
 
 $scope.savemaster_payments = function(data){
 

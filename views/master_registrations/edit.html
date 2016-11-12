@@ -1,35 +1,35 @@
 <div class="main-background">
   <div class="container">
     <div class="row">
-      <form name=master_registrations_form novalidate ng-submit="savemaster_registrations(master_registrations)">
+      <form name=master_registrations_form novalidate>
         <div class="col-xs-4">
-          <div class="form-group col-lg-12 col-xs-12">
+          <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.course_id.$invalid &&!master_registrations_form.course_id.$pristine}">
             <label>Course</label>
             <select ng-options="course.id as course.course_name for course in courses"  ng-change="getLastRegNo(master_registrations.course_id)" name="course_id" class="form-control" ng-required="true" ng-model="master_registrations.course_id"></select>
           </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.reg_no.$invalid &&!master_registrations_form.reg_no.$pristine}">
           <label>Admission No</label>
-          <input type="text" class="form-control" name="reg_no" ng-model="master_registrations.reg_no" ng-required="true">
+          <input type="text" class="form-control" name="reg_no" ng-model="master_registrations.reg_no" ng-required="true" readonly="readonly">
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.reg_date.$invalid &&!master_registrations_form.reg_date.$pristine}">
           <label>Registrations Date</label>
           <input type="text" class="form-control" name="reg_date" ng-model="master_registrations.reg_date" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker ng-required="true">
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.student_id.$invalid &&!master_registrations_form.student_id.$pristine}">
           <label>NIC/POSTAL/PASSPORT</label>
           <input type="text" class="form-control" name="student_id" ng-model="master_registrations.student_id" ng-required="true" readonly="readonly">
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.batch_id.$invalid &&!master_registrations_form.batch_id.$pristine}">
           <label>Batch</label>
-          <select ng-options="batch.id as batch.batch_code for batch in batches"  name="batch_id" class="form-control" ng-model="master_registrations.batch_id"></select>
+          <select ng-options="batch.id as batch.batch_code for batch in batches"  name="batch_id" class="form-control" ng-required="true" ng-model="master_registrations.batch_id"></select>
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.fee_id.$invalid &&!master_registrations_form.fee_id.$pristine}">
           <label>Fee Structure</label>
           <select ng-options="fee_structure.id as fee_structure.fee_structure_code for fee_structure in fee_structures"  ng-change="findByFeeStructureId(master_registrations.fee_id)" name="fee_id" class="form-control" ng-required="true" ng-model="master_registrations.fee_id"></select>
         </div>
         </div>
           <div class="col-xs-4">
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.full_or_ins.$invalid &&!master_registrations_form.full_or_ins.$pristine}">
         <div class="btn-group" data-toggle="buttons">
           <label class="btn btn-primary active" ng-click="fullOrInsCheck('1')">
             <input type="radio" name="full_or_ins" ng-model="master_registrations.full_or_ins" ng-value="1" autocomplete="off" checked> Full Payment
@@ -39,25 +39,25 @@
           </label>
         </div>
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.fee.$invalid &&!master_registrations_form.fee.$pristine}">
           <label>Gross</label>
           <input type="text" class="form-control" name="fee" ng-model="master_registrations.fee" ng-required="true" readonly="readonly">
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.reg_fee.$invalid &&!master_registrations_form.reg_fee.$pristine}">
           <label>Registrations Fee</label>
-          <input type="text" class="form-control" name="reg_fee" ng-model="master_registrations.reg_fee" readonly="readonly">
+          <input type="text" class="form-control" name="reg_fee" ng-model="master_registrations.reg_fee" ng-required="true" readonly="readonly">
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.discount.$invalid &&!master_registrations_form.discount.$pristine}">
           <label>Discount</label>
-          <input type="text" class="form-control" name="discount" ng-model="master_registrations.discount" max="{{master_registrations.fee}}" focus-me>
+          <input type="text" class="form-control" name="discount" ng-model="master_registrations.discount" max="{{master_registrations.fee}}"  ng-required="true">
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.net_fee.$invalid &&!master_registrations_form.net_fee.$pristine}">
           <label>Net Fee</label>
           <input type="text" class="form-control" name="net_fee" ng-model="master_registrations.net_fee"  ng-value="master_registrations.fee - master_registrations.discount" ng-required="true" readonly="readonly">
         </div>
-        <div class="form-group col-lg-12 col-xs-12">
+        <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_registrations_form.discount_comment.$invalid &&!master_registrations_form.discount_comment.$pristine}">
           <label>Comment</label>
-          <input type="text" class="form-control" name="discount_comment" ng-model="master_registrations.discount_comment">
+          <input type="text" class="form-control" name="discount_comment" ng-model="master_registrations.discount_comment" ng-required="true">
         </div>
           </div>
           <div class="col-xs-4" ng-show="master_registrations.full_or_ins == 0">
@@ -73,7 +73,7 @@
                 </table>
         </div>
   </div>
-        <div class="form-group col-lg-12"><input type="submit" class="btn create-btn btn-primary" value="Save"></div>
+        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_registrations_form.$invalid" class="btn create-btn btn-primary" ng-click="savemaster_registrations(master_registrations)">Save</a></div>
       </form>
     </div>
   </div>

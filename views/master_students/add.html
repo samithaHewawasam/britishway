@@ -1,85 +1,85 @@
 <div class="main-background">
   <div class="container">
     <div class="row">
-      <form name=master_students_form novalidate>
+      <form name=master_students_form novalidate ng-submit="save(master_students)">
        <div class="col-xs-4">
          <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.student_id.$invalid &&!master_students_form.student_id.$pristine}">
            <label>NIC/POSTAL/PASSPORT</label>
-           <input type="text" class="form-control" name="student_id" ng-model="master_students.student_id" ng-required="true">
+           <input type="text" class="form-control" name="student_id" ng-model="master_students.student_id" ng-required="true" focus-me>
          </div>
-         <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.name_full.$invalid &&!master_students_form.name_full.$pristine}">
-           <label>Full Name</label>
-           <input type="text" class="form-control" name="name_full" ng-model="master_students.name_full" ng-required="true">
-         </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.name_initials.$invalid &&!master_students_form.name_initials.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12  has-success" ng-class="{ 'has-error': master_students_form.name_initials.$invalid &&!master_students_form.name_initials.$pristine}">
            <label>Name With Initials</label>
            <input type="text" class="form-control" name="name_initials" ng-model="master_students.name_initials" ng-required="true">
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.dob.$invalid &&!master_students_form.dob.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Full Name</label>
+           <input type="text" class="form-control" name="name_full" ng-model="master_students.name_full">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
            <label>DOB</label>
-           <input type="text" class="form-control" name="dob" ng-model="master_students.dob" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker ng-required="true">
+           <input type="text" class="form-control" name="dob" ng-model="master_students.dob" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker>
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.marital_status.$invalid &&!master_students_form.marital_status.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Marital Status</label>
-           <input type="text" class="form-control" name="marital_status" ng-model="master_students.marital_status" ng-required="true">
+           <input type="text" class="form-control" name="marital_status" ng-model="master_students.marital_status">
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.address.$invalid &&!master_students_form.address.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Address</label>
-           <input type="text" class="form-control" name="address" ng-model="master_students.address" ng-required="true">
+           <input type="text" class="form-control" name="address" ng-model="master_students.address">
          </div>
        </div>
        <div class="col-xs-4">
-         <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.contact_no_1.$invalid &&!master_students_form.contact_no_1.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Contact No 1</label>
-           <input type="text" class="form-control" name="contact_no_1" ng-model="master_students.contact_no_1" ng-required="true">
+           <input type="text" class="form-control" name="contact_no_1" ng-model="master_students.contact_no_1">
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.contact_no_2.$invalid &&!master_students_form.contact_no_2.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Contact No 2</label>
-           <input type="text" class="form-control" name="contact_no_2" ng-model="master_students.contact_no_2" ng-required="true">
+           <input type="text" class="form-control" name="contact_no_2" ng-model="master_students.contact_no_2">
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.email.$invalid &&!master_students_form.email.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>E-mail</label>
-           <input type="text" class="form-control" name="email" ng-model="master_students.email" ng-required="true">
+           <input type="text" class="form-control" name="email" ng-model="master_students.email">
          </div>
-         <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.gender.$invalid &&!master_students_form.gender.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Gender</label>
-           <select class="form-control" name="gender" ng-model="master_students.gender" ng-required="true">
+           <select class="form-control" name="gender" ng-model="master_students.gender">
              <option value="1">Male</option>
              <option value="0">Female</option>
            </select>
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.school_attended.$invalid &&!master_students_form.school_attended.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>School Attended</label>
-           <input type="text" class="form-control" name="school_attended" ng-model="master_students.school_attended" ng-required="true">
+           <input type="text" class="form-control" name="school_attended" ng-model="master_students.school_attended">
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.higher_qulification.$invalid &&!master_students_form.higher_qulification.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Higher Qulification</label>
-           <input type="text" class="form-control" name="higher_qulification" ng-model="master_students.higher_qulification" ng-required="true">
+           <input type="text" class="form-control" name="higher_qulification" ng-model="master_students.higher_qulification">
          </div>
        </div>
        <div class="col-xs-4">
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.occupation.$invalid &&!master_students_form.occupation.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Occupation</label>
-           <input type="text" class="form-control" name="occupation" ng-model="master_students.occupation" ng-required="true">
+           <input type="text" class="form-control" name="occupation" ng-model="master_students.occupation">
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.place_of_work.$invalid &&!master_students_form.place_of_work.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Place of Work</label>
-           <input type="text" class="form-control" name="place_of_work" ng-model="master_students.place_of_work" ng-required="true">
+           <input type="text" class="form-control" name="place_of_work" ng-model="master_students.place_of_work">
          </div>
-         <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.guardian_name.$invalid &&!master_students_form.guardian_name.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Guardian Name</label>
-           <input type="text" class="form-control" name="guardian_name" ng-model="master_students.guardian_name" ng-required="true">
+           <input type="text" class="form-control" name="guardian_name" ng-model="master_students.guardian_name">
          </div>
-         <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.guardian_contact_no.$invalid &&!master_students_form.guardian_contact_no.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>Guardian Contact No</label>
-           <input type="text" class="form-control" name="guardian_contact_no" ng-model="master_students.guardian_contact_no" ng-required="true">
+           <input type="text" class="form-control" name="guardian_contact_no" ng-model="master_students.guardian_contact_no">
          </div>
-         <div class="form-group col-lg-12 col-xs-12" ng-class="{ 'has-error': master_students_form.find_by.$invalid &&!master_students_form.find_by.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12">
            <label>How did you find us?</label>
-           <input type="text" class="form-control" name="find_by" ng-model="master_students.find_by" ng-required="true">
+           <input type="text" class="form-control" name="find_by" ng-model="master_students.find_by">
          </div>
        </div>
-        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_students_form.$invalid" class="btn create-btn" ng-click="save(master_students)">Save</a></div>
+        <div class="form-group col-lg-12"><input type="submit" value="submit" ng-disabled="master_students_form.$invalid" class="btn create-btn btn-primary"></div>
       </form>
     </div>
   </div>

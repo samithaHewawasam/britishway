@@ -18,12 +18,12 @@ if(!property_exists($raw_data, 'student_id')){
   echo validation_error("Student ID can't be empty");
   die();
 }
-if(!property_exists($raw_data, 'name_full')){
-  echo validation_error("Full name can't be empty");
+if(!property_exists($raw_data, 'name_initials')){
+  echo validation_error("Name with intials can't be empty");
   die();
 }
-if(!property_exists($raw_data, 'name_initials')){
-  $raw_data->name_initials = NULL;
+if(!property_exists($raw_data, 'name_full')){
+  $raw_data->name_full = NULL;
 }
 if(!property_exists($raw_data, 'dob')){
   $raw_data->dob = NULL;
@@ -35,8 +35,7 @@ if(!property_exists($raw_data, 'address')){
   $raw_data->address = NULL;
 }
 if(!property_exists($raw_data, 'contact_no_1')){
-  echo validation_error("Contact No can't be empty");
-  die();
+  $raw_data->contact_no_1 = NULL;
 }
 if(!property_exists($raw_data, 'contact_no_2')){
   $raw_data->contact_no_2 = NULL;
@@ -45,8 +44,7 @@ if(!property_exists($raw_data, 'email')){
   $raw_data->email = NULL;
 }
 if(!property_exists($raw_data, 'gender')){
-  echo validation_error("Gender can't be empty");
-  die();
+  $raw_data->gender = NULL;
 }
 if(!property_exists($raw_data, 'school_attended')){
   $raw_data->school_attended = NULL;
@@ -61,12 +59,10 @@ if(!property_exists($raw_data, 'place_of_work')){
   $raw_data->place_of_work = NULL;
 }
 if(!property_exists($raw_data, 'guardian_name')){
-  echo validation_error("Guardian Name can't be empty");
-  die();
+  $raw_data->guardian_name = NULL;
 }
 if(!property_exists($raw_data, 'guardian_contact_no')){
-  echo validation_error("Guardian contact no can't be empty");
-  die();
+  $raw_data->guardian_contact_no = NULL;
 }
 if(!property_exists($raw_data, 'find_by')){
   $raw_data->find_by = NULL;

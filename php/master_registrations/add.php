@@ -69,7 +69,6 @@ if(property_exists($raw_data,  'fee')){
   $raw_data->net = $raw_data->fee - $raw_data->discount;
 }
 
-$raw_data->operator_id = 1;
 
 if(property_exists($raw_data,  'fee_installments') && $raw_data->discount > 0){
 

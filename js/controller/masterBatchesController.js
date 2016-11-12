@@ -66,7 +66,12 @@ app.controller('masterBatchesController', ['$scope', 'dataService', '$location',
       "data"  : data
     }).then(function(response){
 
-      $scope.master_batches = new masterBatches();
+      if(response.commit  == 1){
+        alert("Edited");
+        $scope.master_batches = new masterBatches();
+      }else{
+        alert("Error");
+      }
 
     });
 

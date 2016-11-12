@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 include __DIR__ . '/../autoload.php';
 
 $report = new Report();

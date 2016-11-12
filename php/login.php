@@ -9,7 +9,6 @@ if(!empty($login['data'])){
 	$_SESSION['logged'] = true;
 	$_SESSION['user']		= $login;
   $_SESSION['menus']	= $user->menu();
-
 	header("Location: ../");
 
 }else{

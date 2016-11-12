@@ -1,4 +1,4 @@
-var app = angular.module('exam_module', ['ngRoute', 'ngCookies', 'ngAnimate', 'mgcrea.ngStrap', 'daterangepicker']);
+var app = angular.module('britishway', ['ngRoute', 'ngCookies', 'ngAnimate', 'mgcrea.ngStrap', 'daterangepicker', 'angular-loading-bar']);
 
 app.run(['$rootScope', '$route', function($rootScope, $route) {
     $rootScope.$on('$routeChangeSuccess', function() {
@@ -15,4 +15,9 @@ app.run(['$rootScope', '$route', function($rootScope, $route) {
 
    };
 
+}]);
+
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.spinnerTemplate = '<div><div id="overlay"><span class="loader"></div></div>';
 }]);

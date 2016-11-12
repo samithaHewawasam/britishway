@@ -23,13 +23,13 @@
           <label>Batch Intake</label>
           <input type="text" class="form-control" name="batch_intake" ng-model="master_batches.batch_intake" ng-required="true">
         </div>
-        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_batches_form.$invalid" class="btn create-btn" ng-click="savemaster_batches(master_batches)">Create</a></div>
+        <div class="form-group col-lg-12"><a href="javascript:void(0)" ng-disabled="master_batches_form.$invalid" class="btn create-btn btn-primary" ng-click="savemaster_batches(master_batches)">Create</a></div>
       </form>
       </div>
       <div class="col-xs-6">
-        <div class="table-responsive">
+        <div class="box-body">
         <table class="table table-striped table-bordered table-fixed">
-          <tr><th>#</th><th>Batch Code</th><th>Batch Commence Date</th><th>Batch Commence Date</th><th>Batch Intake</th><th>Delete</th><th>Edit</th></tr>
+          <tr><th>#</th><th>Batch Code</th><th>Commence</th><th>End</th><th> Intake</th><th>Delete</th><th>Edit</th></tr>
           <tr ng-repeat="batch in batches">
             <td>{{$index + 1}}</td>
             <td>{{batch.batch_code}}</td>
