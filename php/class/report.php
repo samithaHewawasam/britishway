@@ -66,7 +66,7 @@ AND mc.status IS TRUE AND mb.status IS TRUE",
       }
 
       $this->report_index['income'] = parent::selectQuery(array(
-        "query" => "SELECT mp.pay_date, mr.reg_no, ms.name_full, mc.course_name, mb.batch_code, mp.receipt, mp.amount, mp.pay_type, mu.user_display_name,
+        "query" => "SELECT mp.pay_date, mr.reg_no, ms.name_initials, mc.course_name, mb.batch_code, mp.receipt, mp.amount, mp.pay_type, mu.user_display_name,
         CASE
                 WHEN mp.pay_type  = 1 THEN 'Cash'
                 WHEN mp.pay_type  = 2 THEN 'Cheque'
@@ -179,7 +179,7 @@ AND mc.status IS TRUE AND mb.status IS TRUE",
       }
 
       $this->report_index['dues'] = parent::selectQuery(array(
-        "query" => "SELECT  mr.reg_no, ms.name_full, ms.contact_no_1, mc.course_name, IFNULL(mb.batch_code, 'NOT ASSIGNED') batch,IFNULL(MIN(msi.due_date), mr.reg_date) due_date, DATEDIFF(CURDATE(), IFNULL(MIN(msi.due_date), mr.reg_date)) due_gap, IFNULL(SUM(`amount`-`paid_amount`), `net`-`total_paid`) upto FROM `master_registrations` mr
+        "query" => "SELECT  mr.reg_no, ms.name_initials, ms.contact_no_1, mc.course_name, IFNULL(mb.batch_code, 'NOT ASSIGNED') batch,IFNULL(MIN(msi.due_date), mr.reg_date) due_date, DATEDIFF(CURDATE(), IFNULL(MIN(msi.due_date), mr.reg_date)) due_gap, IFNULL(SUM(`amount`-`paid_amount`), `net`-`total_paid`) upto FROM `master_registrations` mr
         INNER JOIN `master_courses` mc ON mc.id = mr.course_id
         LEFT JOIN `master_student_installments` msi ON msi.master_reg_id = mr.id
         LEFT JOIN `master_students` ms ON ms.id = mr.student_id
@@ -195,7 +195,7 @@ AND mc.status IS TRUE AND mb.status IS TRUE",
     public function search($reg_no){
 
       $this->report_index['registration'] = parent::selectQuery(array(
-        "query" => "SELECT  mr.reg_date,ms.`student_id`, ms.name_full, mc.course_name, mb.batch_code,mr.fee, mr.net,mr.`total_paid`,mr.`reg_fee`,mr.`discount`,mr.`discount_comment`,mu.user_display_name FROM `master_registrations` mr
+        "query" => "SELECT  mr.reg_date,ms.`student_id`, ms.name_initials, mc.course_name, mb.batch_code,mr.fee, mr.net,mr.`total_paid`,mr.`reg_fee`,mr.`discount`,mr.`discount_comment`,mu.user_display_name FROM `master_registrations` mr
         INNER JOIN `master_courses` mc ON mc.id = mr.course_id
         LEFT JOIN `master_students` ms ON ms.id = mr.student_id
         LEFT JOIN `master_users` mu ON mu.id = mr.operator_id
