@@ -87,6 +87,7 @@
 	width: 800px;
 	height: 519px;
 	background-image: none;
+  display: table;
 	}
 
 .field
@@ -135,3 +136,11 @@
     	float:left;
     	margin-bottom: 13px;
     	}
+
+      @media print
+      {
+        @page { margin: 0; }
+        body  { margin: 1.6cm; }
+        a[href]:after { content: none !important; }
+        img[src]:after { content: none !important; }
+      }

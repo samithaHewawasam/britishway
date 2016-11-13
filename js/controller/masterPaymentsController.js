@@ -109,10 +109,5 @@ $scope.master_payments.pay_type = pay_type;
 
 }
 
-$scope.print = function(){
-var popupWin = window.open('', '_blank', 'width=300,height=300');
-  window.print();
-
-};
 
 }]);
