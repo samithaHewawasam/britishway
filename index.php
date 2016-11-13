@@ -158,39 +158,7 @@
 <!-- ./wrapper -->
 
 <!-- Bootstrap 3.3.6 -->
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-route/angular-route.min.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
-<script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
-<script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js"></script>
-<script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-<script src="js/app.js"></script>
-<script src="js/service/route.js"></script>
-<script src="js/service/ajax.js"></script>
-<script src="js/service/authoService.js"></script>
-<script src="js/service/dataService.js"></script>
-<script src="js/controller/masterStudentsController.js"></script>
-<script src="js/controller/masterRegistrationsController.js"></script>
-<script src="js/controller/masterRegistrationsDeleteController.js"></script>
-<script src="js/controller/masterBatchesController.js"></script>
-<script src="js/controller/masterPaymentsController.js"></script>
-<script src="js/controller/masterPaymentsDeleteController.js"></script>
-<script src="js/controller/reportIncomeController.js"></script>
-<script src="js/controller/reportRegistrationsController.js"></script>
-<script src="js/controller/reportBatchWiseController.js"></script>
-<script src="js/controller/reportDuesController.js"></script>
-<script src="js/controller/reportSearchController.js"></script>
-<script src="js/controller/indexController.js"></script>
-<script src="js/controller/masterRegistrationsEditController.js"></script>
-<script src="js/controller/masterStudentsEditController.js"></script>
-<script src="js/directive/focus.js"></script>
-<script src="js/vendor/FileSaver.js"></script>
+<script src="dist/britishway.min.js"></script>
 
 </body>
 </html>
