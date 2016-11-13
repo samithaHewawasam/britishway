@@ -57,7 +57,10 @@
         </div>
         <div class="form-group col-lg-12 col-xs-12">
           <label>Comment</label>
-          <input type="text" class="form-control" name="discount_comment" ng-model="master_registrations.discount_comment">
+          <select class="form-control" name="discount_comment" ng-model="master_registrations.discount_comment">
+            <option value="Md Sir Approved">Md Sir Approved</option>
+            <option value="Top Level Management">Top Level Management</option>
+          </select>
         </div>
           </div>
           <div class="col-xs-4" ng-show="master_registrations.full_or_ins == 0">
