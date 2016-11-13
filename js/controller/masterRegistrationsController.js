@@ -11,7 +11,7 @@ app.controller('masterRegistrationsController', ['$scope', 'dataService', '$loca
     if (getData.hasOwnProperty('student_id')) {
       this.student_id = getData.student_id.data[0].student_id;
     }
-    this.full_or_ins = 1;
+    this.full_or_ins = 0;
   }
   $scope.master_registrations = new MasterRegistrations();
 
