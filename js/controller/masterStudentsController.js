@@ -7,8 +7,10 @@ $scope.save = function(data){
     "data"  : data
   }).then(function(response){
 
-    if(response.commit == 1){
+    if(response.commit == 1 && response.last_insert_id != 0){
       window.location = "#registrations_add?id="+response.last_insert_id;
+    }else if(response.last_insert_id == 0){
+      alert("Error");
     }else{
       alert(response.error_alert);
     }

@@ -10,7 +10,7 @@ $scope.master_students = getData.student.data[0];
 $scope.save = function(data){
 
   Ajax.post({
-    "url"   : "php/master_students/add.php",
+    "url"   : "php/master_students/edit.php",
     "data"  : data
   }).then(function(response){
 
