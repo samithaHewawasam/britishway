@@ -188,6 +188,7 @@
 <script src="js/controller/reportSearchController.js"></script>
 <script src="js/controller/indexController.js"></script>
 <script src="js/controller/masterRegistrationsEditController.js"></script>
+<script src="js/controller/masterStudentsEditController.js"></script>
 <script src="js/directive/focus.js"></script>
 <script src="js/vendor/FileSaver.js"></script>
 

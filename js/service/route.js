@@ -90,6 +90,16 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+        .when('/students_edit', {
+            title: 'Students Edit',
+            templateUrl: 'views/master_students/edit.html',
+            controller: 'masterStudentsEditController',
+            resolve: {
+                getData: function($location, StudentEditService) {
+                    return StudentEditService.get($location.search().s);
+                }
+            }
+        })
         .when('/registrations_delete', {
             title: 'Registration Delete',
             templateUrl: 'views/master_registrations/delete.html',

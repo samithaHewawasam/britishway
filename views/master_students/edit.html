@@ -5,7 +5,7 @@
        <div class="col-xs-4">
          <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.student_id.$invalid &&!master_students_form.student_id.$pristine}">
            <label>NIC/POSTAL/PASSPORT</label>
-           <input type="text" class="form-control" name="student_id" ng-model="master_students.student_id" ng-required="true" focus-me>
+           <input type="text" class="form-control" name="student_id" ng-model="master_students.student_id" ng-required="true" readonly="readonly">
          </div>
          <div class="form-group col-lg-12 col-xs-12  has-success" ng-class="{ 'has-error': master_students_form.name_initials.$invalid &&!master_students_form.name_initials.$pristine}">
            <label>Name With Initials</label>

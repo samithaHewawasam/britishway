@@ -120,3 +120,16 @@ app.service('RegistrationEditService', ['Ajax', 'authoService', function(Ajax, a
   };
 
 }]);
+
+app.service('StudentEditService', ['Ajax', 'authoService', function(Ajax, authoService) {
+
+  this.get = function(s) {
+
+    return Ajax.post({
+      "url": "php/master_students/edit_data.php",
+      "data": {'student_id' : s }
+    });
+
+  };
+
+}]);
