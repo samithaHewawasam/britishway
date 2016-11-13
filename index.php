@@ -93,6 +93,16 @@
 					<?php foreach($menu as $k => $sub): ?>
 						<?php if($k != 'path') :?>
 
+							<?php if($k == "students_edit"): ?>
+								<div class="input-group">
+									<input name="q" class="form-control" placeholder="Edit Students" type="text" ng-model="global_student__search">
+											<span class="input-group-btn">
+												<a href="#/students_edit?s={{global_student__search}}" class="btn btn-flat"><i class="fa fa-edit"></i></a>
+											</span>
+								</div>
+								<?php continue; ?>
+							<?php endif;?>
+
 							<?php if($k == "registrations_edit"): ?>
 								<div class="input-group">
 				          <input name="q" class="form-control" placeholder="Edit Registration" type="text" ng-model="global_search">

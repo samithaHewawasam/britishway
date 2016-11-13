@@ -1,0 +1,109 @@
+<div class="main-background">
+  <div class="container">
+    <div class="row">
+      <form name=master_students_form novalidate ng-submit="save(master_students)">
+       <div class="col-xs-4">
+         <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.student_id.$invalid &&!master_students_form.student_id.$pristine}">
+           <label>NIC/POSTAL/PASSPORT</label>
+           <input type="text" class="form-control" name="student_id" ng-model="master_students.student_id" ng-required="true" focus-me>
+         </div>
+         <div class="form-group col-lg-12 col-xs-12  has-success" ng-class="{ 'has-error': master_students_form.name_initials.$invalid &&!master_students_form.name_initials.$pristine}">
+           <label>Name With Initials</label>
+           <input type="text" class="form-control" name="name_initials" ng-model="master_students.name_initials" ng-required="true">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12 has-success" ng-class="{ 'has-error': master_students_form.find_by.$invalid &&!master_students_form.find_by.$pristine}">
+           <label>How did you find us?</label>
+           <select ng-model="master_students.find_by" class="form-control" name="find_by" ng-required="true">
+             <option value="News Paper">News Paper</option>
+             <option value="Friends">Friends</option>
+             <option value="Internet">Internet</option>
+             <option value="TV Advertisements">TV Advertisements</option>
+             <option value="Previous Students">Previous Students</option>
+             <option value="Graton">Graton</option>
+             <option value="name board">name board</option>
+             <option value="Poster">Poster</option>
+             <option value="Staff">Staff</option>
+             <option value="Radio">Radio</option>
+             <option value="Hand Bill">Hand Bill</option>
+           </select>
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Full Name</label>
+           <input type="text" class="form-control" name="name_full" ng-model="master_students.name_full">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>DOB</label>
+           <input type="text" class="form-control" name="dob" ng-model="master_students.dob" data-date-format="yyyy-MM-dd" data-date-type="string" data-max-date="today" data-autoclose="1" bs-datepicker>
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Marital Status</label>
+           <select name="marital_status" ng-model="master_students.marital_status" class="form-control">
+             <option value="Single">Single</option>
+             <option value="Married">Married</option>
+             <option value="Other">Other</option>
+           </select>
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Address</label>
+           <input type="text" class="form-control" name="address" ng-model="master_students.address">
+         </div>
+       </div>
+       <div class="col-xs-4">
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Contact No 1</label>
+           <input type="text" class="form-control" name="contact_no_1" ng-model="master_students.contact_no_1">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Contact No 2</label>
+           <input type="text" class="form-control" name="contact_no_2" ng-model="master_students.contact_no_2">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>E-mail</label>
+           <input type="text" class="form-control" name="email" ng-model="master_students.email">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Gender</label>
+           <select class="form-control" name="gender" ng-model="master_students.gender">
+             <option value="1">Male</option>
+             <option value="0">Female</option>
+           </select>
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>School Attended</label>
+           <input type="text" class="form-control" name="school_attended" ng-model="master_students.school_attended">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Higher Qulification</label>
+           <select class="form-control" name="higher_qulification" ng-model="master_students.higher_qulification">
+             <option value="OL">OL</option>
+             <option value="AL">AL</option>
+             <option value="Uni">Uni</option>
+             <option value="1-11">1-11</option>
+             <option value="Other">Other</option>
+           </select>
+         </div>
+       </div>
+       <div class="col-xs-4">
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Occupation</label>
+           <input type="text" class="form-control" name="occupation" ng-model="master_students.occupation">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Place of Work</label>
+           <input type="text" class="form-control" name="place_of_work" ng-model="master_students.place_of_work">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Guardian Name</label>
+           <input type="text" class="form-control" name="guardian_name" ng-model="master_students.guardian_name">
+         </div>
+         <div class="form-group col-lg-12 col-xs-12">
+           <label>Guardian Contact No</label>
+           <input type="text" class="form-control" name="guardian_contact_no" ng-model="master_students.guardian_contact_no">
+         </div>
+       </div>
+        <div class="form-group col-lg-12"><input type="submit" value="submit" ng-disabled="master_students_form.$invalid" class="btn create-btn btn-primary"></div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
