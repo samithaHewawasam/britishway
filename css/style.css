@@ -76,3 +76,6 @@
     width: 32px;
     z-index: 10002;
 }
+.menu-open input {
+    margin-left: 5px;
+}

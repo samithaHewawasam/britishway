@@ -12,7 +12,8 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: 'views/reports/search.html',
             controller: 'reportSearchController',
             resolve: {
-                getData: function($location, searchService) {
+                getData: function($location, searchService, $rootScope) {
+                    $rootScope.global_search = $location.search().r;
                     return searchService.get($location.search().r);
                 }
             }
