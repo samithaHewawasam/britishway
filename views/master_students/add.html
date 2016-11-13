@@ -7,7 +7,7 @@
            <label>NIC/POSTAL/PASSPORT</label>
            <input type="text" class="form-control" name="student_id" ng-model="master_students.student_id" ng-required="true" focus-me>
          </div>
-         <div class="form-group col-lg-12 col-xs-12  has-success" ng-class="{ 'has-error': master_students_form.name_initials.$invalid &&!master_students_form.name_initials.$pristine}">
+         <div class="form-group col-lg-12 col-xs-12  has-success capitalize" ng-class="{ 'has-error': master_students_form.name_initials.$invalid &&!master_students_form.name_initials.$pristine}">
            <label>Name With Initials</label>
            <input type="text" class="form-control" name="name_initials" ng-model="master_students.name_initials" ng-required="true">
          </div>

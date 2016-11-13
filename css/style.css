@@ -79,3 +79,6 @@
 .menu-open input {
     margin-left: 5px;
 }
+.capitalize input{
+  text-transform: capitalize;
+}
