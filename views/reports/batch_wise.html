@@ -21,11 +21,12 @@
                   </select>
                 </div>
                 <div class="col-lg-3">
-
+                  <label>Excel</label>
+                  <input type="button" ng-click="exportData()" value="Export" class="form-control">
                 </div>
               </div>
             </div>
-          <div class="box-body">
+          <div class="box-body" id="excel_export">
           <table class="table table-bordered">
             <thead>
             <tr role="row">

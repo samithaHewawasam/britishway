@@ -50,7 +50,7 @@
 			              <span class="hidden-xs"><?php echo $_SESSION['user']['data'][0]->user_display_name; ?></span>
 			            </a>
 								</li>
-								<li><a href="login/"><span>Loggout</span></a></li>
+								<li><a href="login/"><span>Logout</span></a></li>
 			          </ul>
 			          </li>
 
