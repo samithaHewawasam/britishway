@@ -10,12 +10,10 @@ class master_students extends database
 
        return parent::wrapper(array(
          array(
-           'query' => "INSERT INTO `master_students`(`student_id`, `name_full`, `name_initials`, `dob`,
-              `marital_status`, `address`, `contact_no_1`, `contact_no_2`, `email`, `gender`, `school_attended`,
-              `higher_qulification`, `occupation`, `place_of_work`, `guardian_name`, `guardian_contact_no`, `find_by`, `operator_id`)
-              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+           'query' => "UPDATE `master_students` SET `name_full`=?,`name_initials`=?,`dob`=?,`marital_status`=?,
+           `address`=?,`contact_no_1`=?,`contact_no_2`=?,`email`=?,`gender`=?,`school_attended`=?,`higher_qulification`= ?,
+           `occupation`=?,`place_of_work`=?,`guardian_name`=?,`guardian_contact_no`=?,`find_by`=? WHERE `student_id` =?",
            'data' => array(
-             $student_id,
              $name_full,
              $name_initials,
              $dob,
@@ -32,7 +30,7 @@ class master_students extends database
              $guardian_name,
              $guardian_contact_no,
              $find_by,
-             USER_ID
+             $student_id
            )
        )));
 

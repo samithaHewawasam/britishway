@@ -17,6 +17,9 @@ $master_students = new master_students();
 if(!property_exists($raw_data, 'student_id')){
   echo validation_error("Student ID can't be empty");
   die();
+}else if(empty($raw_data->student_id)){
+  echo validation_error("Student ID can't be empty");
+  die();
 }
 
 echo json_encode($master_students->edit_data($raw_data->student_id));

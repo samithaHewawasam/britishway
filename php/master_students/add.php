@@ -22,6 +22,10 @@ if(!property_exists($raw_data, 'name_initials')){
   echo validation_error("Name with intials can't be empty");
   die();
 }
+if(!property_exists($raw_data, 'find_by')){
+  echo validation_error("Find By can't be empty");
+  die();
+}
 if(!property_exists($raw_data, 'name_full')){
   $raw_data->name_full = NULL;
 }
@@ -42,7 +46,15 @@ if(!property_exists($raw_data, 'contact_no_2')){
 }
 if(!property_exists($raw_data, 'email')){
   $raw_data->email = NULL;
+}else{
+
+  if(!filter_var($raw_data->email, FILTER_VALIDATE_EMAIL)){
+    echo validation_error("Email is invalid");
+    die();
+  }
+
 }
+
 if(!property_exists($raw_data, 'gender')){
   $raw_data->gender = NULL;
 }
@@ -63,9 +75,6 @@ if(!property_exists($raw_data, 'guardian_name')){
 }
 if(!property_exists($raw_data, 'guardian_contact_no')){
   $raw_data->guardian_contact_no = NULL;
-}
-if(!property_exists($raw_data, 'find_by')){
-  $raw_data->find_by = NULL;
 }
 echo json_encode($master_students->add(
               $raw_data->student_id,
