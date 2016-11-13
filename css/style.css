@@ -82,3 +82,56 @@
 .capitalize input{
   text-transform: capitalize;
 }
+.receipt
+	{
+	width: 800px;
+	height: 519px;
+	background-image: none;
+	}
+
+.field
+  	{
+  	width: 150px;
+  	height: 25px;
+  	display: inline-block;
+  	top: 250px;
+  	margin-top: 132px;
+  	margin-left: 40px;
+  	float: left;
+  	margin-bottom: 6px;
+  	}
+
+.fieldLong
+  	{
+  	width: 400px;
+  	height: 15px;
+  	display: inline-block;
+  	top: 250px;
+  	margin-top: 20px;
+  	margin-left: 200px;
+  	float: left;
+  	margin-right: 50px;
+  	}
+
+.cashier
+  	{
+  	width:155px;
+  	height:25px;
+  	display:inline-block;
+  	top: 250px;
+  	margin-top: 50px;
+  	margin-left: 67px;
+  	float:left;
+  	margin-bottom: 13px;
+  	}
+    .deposit
+    	{
+    	width:155px;
+    	height:25px;
+    	display:inline-block;
+    	top: 250px;
+    	margin-top: 50px;
+    	margin-left: 350px;
+    	float:left;
+    	margin-bottom: 13px;
+    	}

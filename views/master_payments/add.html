@@ -1,7 +1,7 @@
 <div class="main-background">
   <div class="container">
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-xs-6" ng-if="!master_payments.receipt_show">
       <form name=master_payments_form novalidate ng-submit="savemaster_payments(master_payments)">
         <div class="form-group col-lg-12 col-xs-12">
           <label>Registration No</label>
@@ -93,10 +93,34 @@
           <input type="text" class="form-control" name="reference" ng-model="master_payments.diposits_reference" ng-required="true">
         </div>
       </div>
-
-        <div class="form-group col-lg-12"><input type="submit" class="btn create-btn btn-primary" value="Create"></div>
+        <div class="form-group col-lg-12">
+          <input type="submit" class="btn create-btn btn-primary" data-animation="am-fade-and-scale" value="Save">
+        </div>
       </form>
     </div>
+
+    <div class="col-xs-12"  ng-if="master_payments.receipt_show">
+      <div class='receipt'>
+        <div class="field">{{master_payments.branch_name}}</div>
+        <div class="field">{{master_payments.receipt_display.receipt}}</div>
+        <div class="field">{{master_payments.receipt_display.pay_date}}</div>
+        <div class="field">{{master_payments.receipt_display.reg_no}}</div>
+
+        <div class="fieldLong">{{master_payments.receipt_display.amount}}</div>
+        <div class="fieldLong">{{master_payments.receipt_display.amount}}</div>
+        <div class="fieldLong">{{master_payments.receipt_display.amount}}</div>
+        <div class="fieldLong">{{master_payments.receipt_display.amount}}</div>
+        <div class="fieldLong">{{master_payments.receipt_display.amount}}</div>
+        <div class="fieldLong">{{master_payments.receipt_display.amount}}</div>
+
+        <div class="cashier">{{master_payments.receipt_display.user_display_name}}</div>
+        <div class="deposit">{{master_payments.receipt_display.amount}}</div>
+      </div>
+      <div class="form-group col-lg-12">
+        <input type="button" class="btn create-btn btn-primary" ng-click="print()" value="Print">
+      </div>
+    </div>
+
   </div>
 </div>
 </div>

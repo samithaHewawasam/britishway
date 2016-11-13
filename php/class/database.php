@@ -6,7 +6,7 @@ abstract class database extends PDO
 
     private $sql;
     private $sqlSync;
-    private $response = array('commit' => false, 'error' => null, 'error_alert' => null, 'rollback' => false);
+    private $response = array('commit' => false, 'error' => null, 'error_alert' => null, 'rollback' => false, 'data' => array());
     private $result = array('data' => array(), 'error' => NULL);
     private $dues = array();
     private $paid_amount = 0;
@@ -16,6 +16,7 @@ abstract class database extends PDO
     {
 
         include "config.php";
+        $this->response['branch_name'] = BRANCH_NAME;
         parent::__construct('mysql:host=localhost;dbname='.DATABASE, USERNAME, PASSWORD, array(
             PDO::ATTR_PERSISTENT => true
         ));
@@ -226,6 +227,13 @@ abstract class database extends PDO
                USER_ID
              ));
 
+             array_push($this->response['data'], $this->selectQuery(array(
+                 "query" => "SELECT mp.*, mu.user_display_name, mr.reg_no FROM `master_payments` mp INNER JOIN `master_users` mu ON mp.operator_id = mu.id INNER JOIN master_registrations mr ON mr.id = mp.master_reg_id WHERE `receipt` = ?",
+                 "data" => array(
+                   $data->receipt
+                 )
+             ))['data'][0]);
+
            }else if($key == 'Cheque' && !empty($pay_type['amount'])){
              $data->amount = $pay_type['amount'];
              $data->pay_type = 2;
@@ -244,6 +252,13 @@ abstract class database extends PDO
                $data->reference,
                USER_ID
              ));
+
+             array_push($this->response['data'], $this->selectQuery(array(
+                 "query" => "SELECT mp.*, mu.user_display_name FROM `master_payments` mp INNER JOIN `master_users` mu ON mp.operator_id = mu.id WHERE `receipt` = ?",
+                 "data" => array(
+                   $data->receipt
+                 )
+             ))['data'][0]);
 
            }else if($key == 'Credit' && !empty($pay_type['amount'])){
              $data->amount = $pay_type['amount'];
@@ -264,6 +279,13 @@ abstract class database extends PDO
                USER_ID
              ));
 
+             array_push($this->response['data'], $this->selectQuery(array(
+                 "query" => "SELECT mp.*, mu.user_display_name FROM `master_payments` mp INNER JOIN `master_users` mu ON mp.operator_id = mu.id WHERE `receipt` = ?",
+                 "data" => array(
+                   $data->receipt
+                 )
+             ))['data'][0]);
+
            }else if($key == 'Bank' && !empty($pay_type['amount'])){
              $data->amount = $pay_type['amount'];
              $data->pay_type = 4;
@@ -282,6 +304,13 @@ abstract class database extends PDO
                $data->reference,
                USER_ID
              ));
+
+             array_push($this->response['data'], $this->selectQuery(array(
+                 "query" => "SELECT mp.*, mu.user_display_name FROM `master_payments` mp INNER JOIN `master_users` mu ON mp.operator_id = mu.id WHERE `receipt` = ?",
+                 "data" => array(
+                   $data->receipt
+                 )
+             ))['data'][0]);
 
            }
 

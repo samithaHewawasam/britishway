@@ -1,4 +1,4 @@
-app.controller('masterPaymentsController', ['$scope', '$rootScope', '$location', 'Ajax', 'getData', function($scope, $rootScope, $location, Ajax, getData) {
+app.controller('masterPaymentsController', ['$scope', '$rootScope', '$location', 'Ajax', 'getData', '$modal', function($scope, $rootScope, $location, Ajax, getData, $modal) {
 
 
 function Payment(){
@@ -17,6 +17,8 @@ function Payment(){
   this.credit_reference = "";
   this.diposits_bank_name = "";
   this.diposits_reference = "";
+  this.receipt_show = false;
+  this.receipt_display = [];
 }
 
 
@@ -88,9 +90,11 @@ $scope.savemaster_payments = function(data){
   }).then(function(response){
 
     if(response.commit  == 1){
-      alert("Saved");
-      window.location = "#payments_add";
-      $scope.master_payments = new Payment();
+      //window.location = "#payments_add";
+      //$scope.master_payments = new Payment();
+      $scope.master_payments.receipt_show = true;
+      $scope.master_payments.receipt_display = response.data[0];
+      $scope.master_payments.branch_name = response.branch_name;
     }else{
       alert(response.error_alert);
     }
@@ -104,5 +108,11 @@ $scope.payTypeCheck = function(pay_type){
 $scope.master_payments.pay_type = pay_type;
 
 }
+
+$scope.print = function(){
+var popupWin = window.open('', '_blank', 'width=300,height=300');
+  window.print();
+
+};
 
 }]);
