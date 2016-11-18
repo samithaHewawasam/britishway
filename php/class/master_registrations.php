@@ -143,7 +143,7 @@ class master_registrations extends database
     {
 
         $this->registrations_index['registration'] = parent::selectQuery(array(
-            "query" => "SELECT  mr.reg_date, mr.reg_no, ms.`student_id`, ms.name_full, mc.id course_id, mc.course_name, mb.id batch_id, mb.batch_code,mr.fee, mr.net,mr.`total_paid`,mr.`reg_fee`,mr.`discount`,mr.`discount_comment`,mu.user_display_name FROM `master_registrations` mr
+            "query" => "SELECT  mr.reg_date, mr.reg_no, ms.`student_id`, mr.fee_id, mr.full_or_ins, ms.name_full, mc.id course_id, mc.course_name, mb.id batch_id, mb.batch_code,mr.fee, mr.net,mr.`total_paid`,mr.`reg_fee`,mr.`discount`,mr.`discount_comment`,mu.user_display_name FROM `master_registrations` mr
             INNER JOIN `master_courses` mc ON mc.id = mr.course_id
             LEFT JOIN `master_students` ms ON ms.id = mr.student_id
             LEFT JOIN `master_users` mu ON mu.id = mr.operator_id
