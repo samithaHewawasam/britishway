@@ -63,7 +63,9 @@ class master_payments extends database
 
     public function findRegNoByRegNo($reg_no){
       $this->payments_index['reg_no'] = parent::selectQuery(array(
-          "query" => "SELECT  mr.`id`, mr.`reg_no`, ms.`name_initials`, (mr.net - mr.total_paid) due FROM `master_registrations` mr INNER JOIN `master_students` ms ON ms.id = mr.student_id WHERE mr.`reg_no` = ?",
+          "query" => "SELECT  mr.`id`, mr.`reg_no`, ms.`name_initials`, mc.`course_name`,  (mr.net - mr.total_paid) due FROM `master_registrations` mr INNER JOIN `master_students` ms ON ms.id = mr.student_id
+          INNER JOIN `master_courses` mc ON mc.id = mr.course_id
+          WHERE mr.`reg_no` = ?",
           "data" => array(
               $reg_no
           )

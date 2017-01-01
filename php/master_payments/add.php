@@ -75,8 +75,10 @@ $multiplePaymentsArray['Bank']['reference'] = $raw_data->diposits_reference;
 $raw_data->pay_type_array = $multiplePaymentsArray;
 $response_data = array();
 $response_data = $master_payments->add($raw_data);
-$_SESSION['receipt'] = array();
+$_SESSION['receipt'] = new stdClass;
 $_SESSION['receipt'] = $response_data['data'][0];
+$_SESSION['receipt']->name = $raw_data->name_initials;
+$_SESSION['receipt']->course_name = $raw_data->course_name;
 echo json_encode($response_data);
 
 

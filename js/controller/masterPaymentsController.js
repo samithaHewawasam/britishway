@@ -77,6 +77,7 @@ $scope.getThePayInfo = function(data){
     $scope.master_payments.master_reg_id  = response.reg_no.data[0].id;
     $scope.master_payments.master_reg_no  = response.reg_no.data[0].reg_no;
     $scope.master_payments.name_initials  = response.reg_no.data[0].name_initials;
+    $scope.master_payments.course_name = response.reg_no.data[0].course_name;
     $scope.master_payments.due  = response.reg_no.data[0].due;
   });
 
