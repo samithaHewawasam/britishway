@@ -1,4 +1,4 @@
-var app = angular.module('britishway', ['ngRoute', 'ngCookies', 'ngAnimate', 'mgcrea.ngStrap', 'daterangepicker', 'angular-loading-bar']);
+var app = angular.module('britishway', ['ngRoute', 'mgcrea.ngStrap', 'daterangepicker', 'angular-loading-bar']);
 
 app.run(['$rootScope', '$route', function($rootScope, $route) {
     $rootScope.$on('$routeChangeSuccess', function() {
