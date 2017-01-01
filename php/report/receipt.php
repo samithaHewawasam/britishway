@@ -131,12 +131,14 @@ $pdf->Cell(50,7, $raw_data->pay_date,0,0,'L');
 $pdf->Cell(50,7, $raw_data->reg_no,0,1,'L');
 /* First 4 lines end */
 /* Next 4 lines start */
-$pdf->SetY(55);
-$pdf->SetX(30);
+$pdf->SetY(50);
+$pdf->SetX(40);
 $pdf->Cell(105,7, $raw_data->name,0,1,'L' );
-$pdf->SetX(30);
+$pdf->SetY(60);
+$pdf->SetX(40);
 $pdf->Cell(105,7, strtoupper(convert_number_to_words($raw_data->amount)).' ONLY',0,1,'L');
-$pdf->SetX(30);
+$pdf->SetY(70);
+$pdf->SetX(40);
 $pdf->Cell(105,7, $raw_data->course_name,0,1,'L');
 /* Bottom Lines start */
 $pdf->setY(115);
