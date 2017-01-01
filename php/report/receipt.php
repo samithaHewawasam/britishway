@@ -135,7 +135,7 @@ $pdf->SetY(55);
 $pdf->SetX(30);
 $pdf->Cell(105,7, $raw_data->name,0,1,'L' );
 $pdf->SetX(30);
-$pdf->Cell(105,7, strtoupper(convert_number_to_words($raw_data->amount)) .' only',0,1,'L');
+$pdf->Cell(105,7, strtoupper(convert_number_to_words($raw_data->amount)).' ONLY',0,1,'L');
 $pdf->SetX(30);
 $pdf->Cell(105,7, $raw_data->course_name,0,1,'L');
 /* Bottom Lines start */
