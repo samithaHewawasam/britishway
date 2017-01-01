@@ -92,9 +92,10 @@ $scope.savemaster_payments = function(data){
     if(response.commit  == 1){
       //window.location = "#payments_add";
       //$scope.master_payments = new Payment();
-      $scope.master_payments.receipt_show = true;
+      window.location = "#payments_receipt";
       $scope.master_payments.receipt_display = response.data[0];
       $scope.master_payments.branch_name = response.branch_name;
+
     }else{
       alert(response.error_alert);
     }

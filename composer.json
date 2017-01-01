@@ -1,0 +1,14 @@
+{
+    "name": "samithahewawasam/britishway",
+    "description": "britishway systems",
+    "type": "project",
+    "require": {
+        "setasign/fpdf": "^1.8"
+    },
+    "authors": [
+        {
+            "name": "Samitha Hewawasam ( underscore )",
+            "email": "samithahewawasam@gmail.com"
+        }
+    ]
+}

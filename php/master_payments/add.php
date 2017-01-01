@@ -73,7 +73,11 @@ $multiplePaymentsArray['Bank']['bank_name'] = $raw_data->diposits_bank_name;
 $multiplePaymentsArray['Bank']['reference'] = $raw_data->diposits_reference;
 
 $raw_data->pay_type_array = $multiplePaymentsArray;
-echo json_encode($master_payments->add($raw_data));
+$response_data = array();
+$response_data = $master_payments->add($raw_data);
+$_SESSION['receipt'] = array();
+$_SESSION['receipt'] = $response_data['data'][0];
+echo json_encode($response_data);
 
 
 

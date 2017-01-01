@@ -1,5 +1,7 @@
 <?php session_start();
-
+if(empty($_SESSION)){
+  header('Location: ../login');
+}
 function __autoload($class)
 {
     include __DIR__ . '/class/' . $class . '.php';

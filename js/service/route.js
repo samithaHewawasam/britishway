@@ -156,6 +156,11 @@ app.config(function($routeProvider, $locationProvider) {
             }
           }
         })
+
+        .when('/payments_receipt', {
+            title: 'Receipt',
+            templateUrl: 'views/master_payments/receipt.html'
+        })
         // If 404
         .otherwise({
             redirectTo: '/'
