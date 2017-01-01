@@ -79,7 +79,7 @@
 				<?php foreach($_SESSION['menus'] as $key => $menu): ?>
 
 				<li class="treeview">
-          <a href="/<?php echo $menu['path']; ?>">
+          <a href="<?php echo $menu['path']; ?>">
             <i class="fa fa-pie-chart"></i>
             <span> <?php echo $key; ?> </span>
             <span class="pull-right-container">
