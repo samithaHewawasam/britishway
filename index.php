@@ -78,7 +78,7 @@
 				<?php foreach($_SESSION['menus'] as $key => $menu): ?>
 
 				<li class="treeview">
-          <a href="#/<?php echo $menu['path']; ?>">
+          <a href="/<?php echo $menu['path']; ?>">
             <i class="fa fa-pie-chart"></i>
             <span> <?php echo $key; ?> </span>
             <span class="pull-right-container">
@@ -97,7 +97,7 @@
 								<div class="input-group">
 									<input name="q" class="form-control" placeholder="Edit Students" type="text" ng-model="global_student__search">
 											<span class="input-group-btn">
-												<a href="#/students_edit?s={{global_student__search}}" class="btn btn-flat"><i class="fa fa-edit"></i></a>
+												<a href="students_edit?s={{global_student__search}}" class="btn btn-flat"><i class="fa fa-edit"></i></a>
 											</span>
 								</div>
 								<?php continue; ?>
@@ -107,13 +107,13 @@
 								<div class="input-group">
 				          <input name="q" class="form-control" placeholder="Edit Registration" type="text" ng-model="global_search">
 				              <span class="input-group-btn">
-				                <a href="#/registrations_edit?r={{global_search}}" class="btn btn-flat"><i class="fa fa-edit"></i></a>
+				                <a href="registrations_edit?r={{global_search}}" class="btn btn-flat"><i class="fa fa-edit"></i></a>
 				              </span>
 				        </div>
 								<?php continue; ?>
 							<?php endif;?>
 
-					<li><a href="#/<?php echo $k;?>"><i class="fa fa-circle-o"></i> <?php echo $sub;?> </a></li>
+					<li><a href="<?php echo $k;?>"><i class="fa fa-circle-o"></i> <?php echo $sub;?> </a></li>
 					<?php endif; ?>
 				<?php endforeach; ?>
 				</ul>
