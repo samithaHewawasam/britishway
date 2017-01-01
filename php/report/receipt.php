@@ -140,6 +140,9 @@ $pdf->Cell(105,7, strtoupper(convert_number_to_words($raw_data->amount)).' ONLY'
 $pdf->SetY(70);
 $pdf->SetX(40);
 $pdf->Cell(105,7, $raw_data->course_name,0,1,'L');
+$pdf->SetY(100);
+$pdf->SetX(40);
+$pdf->Cell(105,7, 3000,0,1,'L');
 /* Bottom Lines start */
 $pdf->setY(115);
 $pdf->Cell(41,7, $raw_data->user_display_name,0,0,'L');
