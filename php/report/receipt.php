@@ -10,7 +10,7 @@ $pdf->AddPage();
 $pdf->SetAutoPageBreak(true, 0);
 $pdf->SetFont('Arial','B',10);
 /* First 4 lines start*/
-$pdf->SetY(35);
+$pdf->SetY(45);
 $pdf->SetX(11);
 $pdf->Cell(40,7, BRANCH_NAME,0,0,'L');
 $pdf->Cell(40,7, $raw_data->receipt,0,0,'L');
