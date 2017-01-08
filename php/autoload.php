@@ -1,4 +1,7 @@
-<?php session_start();
+<?php
+ini_set('session.gc_maxlifetime', 3600);
+session_set_cookie_params(3600);
+session_start();
 function __autoload($class)
 {
     include __DIR__ . '/class/' . $class . '.php';
