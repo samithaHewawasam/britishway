@@ -35,25 +35,18 @@
               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Contact No</th>
               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Course</th>
               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Batch</th>
-              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Due Date</th>
-              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Due Gap</th>
-              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">Due Amount</th>
+              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1">NIC</th>
             </thead>
             <tbody>
-              <tr ng-repeat="due in dues">
-                <td class="">{{due.reg_no}}</td>
-                <td class="">{{due.name_initials}}</td>
-                <td class="">{{due.contact_no_1}}</td>
-                <td class="">{{due.course_name}}</td>
-                <td class="">{{due.batch}}</td>
-                <td class="">{{due.due_date}}</td>
-                <td class="">{{due.due_gap}}</td>
-                <td class="">{{due.upto | currency:"" }}</td>
+              <tr ng-repeat="StudentDetail in StudentDetails">
+                <td class="">{{StudentDetail.reg_no}}</td>
+                <td class="">{{StudentDetail.name_initials}}</td>
+                <td class="">{{StudentDetail.contact_no_1}}</td>
+                <td class="">{{StudentDetail.course_name}}</td>
+                <td class="">{{StudentDetail.batch}}</td>
+                <td class="">{{StudentDetail.student_id}}</td>
 
               <tr>
-                <tr style="font-weight: 900; text-align: right; background: rgb(60, 141, 188) none repeat scroll 0% 0%; color: white; padding: 20px;">
-                  <td colspan="8">TOTAL DUES : {{dues.total | currency:""}}</td>
-                <tr>
             </tbody>
           </table>
           </div>
