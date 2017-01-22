@@ -192,6 +192,29 @@
 <script src="js/controller/reportStudentDetailsController.js"></script>
 <script src="js/directive/focus.js"></script>
 <script src="js/vendor/FileSaver.js"></script>
+ <script defer>
 
+$(document).mousemove(function( event ) {
+
+ $.ajax({
+         url: "php/session.php",
+
+         dataType:'JSON',
+
+         success:function(res){
+
+       if(res == false){
+
+           window.location = "login";
+
+        }
+
+     }
+
+    });
+
+});
+
+</script>
 </body>
 </html>

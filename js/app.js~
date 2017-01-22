@@ -1,8 +1,6 @@
 var app = angular.module('britishway', ['ngRoute', 'ngCookies', 'mgcrea.ngStrap', 'daterangepicker', 'angular-loading-bar']);
 
 app.run(['$rootScope', '$route', function($rootScope, $route) {
-
-
     $rootScope.$on('$routeChangeSuccess', function() {
       $rootScope.title = $route.current.title;
     });

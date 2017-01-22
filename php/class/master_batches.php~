@@ -34,7 +34,7 @@ class master_batches extends database
       $this->batches_index['new_batch'] = parent::selectQuery(array(
           "query" => "SELECT IF(count(*) = 0,
           CONCAT('".BRANCH_CODE."', mc.`course_code`, '/',YEAR(CURDATE()), '-', LPAD(1,3,'0')),
-          CONCAT('".BRANCH_CODE."', mc.`course_code`, '/',YEAR(CURDATE()), '-', LPAD(RIGHT(MAX(mb.batch_code), 3)+ 1,3,'0'))) batch_code
+          CONCAT('".BRANCH_CODE."', mc.`course_code`, '/',YEAR(CURDATE()), '-', LPAD(MAX(mb.`batch_code`)+ 1,3,'0'))) batch_code
           FROM `master_batches` mb
           INNER JOIN `master_courses` mc ON mc.`id` = mb.`batch_course_id`
           WHERE mb.`batch_course_id` = ".$id." AND mb.`batch_status` IS TRUE ORDER BY mb.`id` DESC LIMIT 1",
